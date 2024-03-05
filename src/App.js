@@ -1,22 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Card, Paragraph } from './components/atoms';
+import { Card, Paragraph, Divider, Button } from './components/atoms';
+import { FaUser } from 'react-icons/fa';
 
+/* const invert = ({primary,secondary}) =>{
+  primary: secondary,
+  secondary: primary,
+}; */
 function App() {
+  console.log("Render APP")
   let color = "blue"
   return (
     <React.Fragment>
-    <div style={{
-      backgroundColor : color
-    }} className="App">
-      Hello World
-    </div>
+    <Button icon={<FaUser />}></Button>
       <Card>
         Alan Wake II
         <Paragraph>Test</Paragraph>
       </Card>
-      
+      <Divider bgColor="blue"></Divider>
       <Card></Card>
       <Card></Card>
       <Card></Card>

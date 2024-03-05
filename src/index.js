@@ -15,10 +15,7 @@ const night = {
   secondary:"white",
   primary:"#383737"
 };
-/* const invert = ({primary,secondary}) =>{
-  primary: secondary,
-  secondary: primary,
-}; */
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
