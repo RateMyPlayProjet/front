@@ -1,0 +1,18 @@
+.genre{
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.btnInfo{
+    width: 121px;
+    height: 27px;
+    text-align: center;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    background-color: #846AF8;
+    border-radius: 10px;
+}
