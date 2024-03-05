@@ -20,6 +20,8 @@ import {
 import { Menu } from "./components/organisms";
 import { MenuButton } from "./components/molecules";
 import { hasFormSubmit } from "@testing-library/user-event/dist/utils";
+import HttpExample from "./components/atoms/HttpExample/HttpExample";
+
 const invert = ({ primary, secondary }) => ({
   primary: secondary,
   secondary: primary,
@@ -49,7 +51,11 @@ function App() {
   const renderPage = () => {
     switch (page) {
       case "carrot":
-        return <div><Clock/></div>;
+        return (
+          <div>
+            <Clock />
+          </div>
+        );
         break;
       case "lemon":
         return <div>Lemon</div>;
@@ -68,6 +74,7 @@ function App() {
 
   return (
     <>
+      <HttpExample></HttpExample>
       <Menu data={menuData} handler={handler}></Menu>
       <InputText />
       {renderPage()}
