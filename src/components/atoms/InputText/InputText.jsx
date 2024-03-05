@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 
 const StyledInput = styled.input``;
+
 const InputText = () => {
     const [value, setValue] = useState("");
     const handleText = (e) =>{
@@ -9,7 +10,7 @@ const InputText = () => {
             setValue(e.target.value);
         }
     };
-  return <StyledInput placefolder="Login" onChange={handleText}/>;
+  return <StyledInput placefolder="Login" onChange={handleText} />;
   
 }
 

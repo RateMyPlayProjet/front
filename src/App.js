@@ -1,50 +1,85 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Card, Paragraph, Divider, Button, InputText } from './components/atoms';
-import { FaAngry, FaSadCry, FaSmile, FaUser } from 'react-icons/fa';
-/* const invert = ({primary,secondary}) =>{
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { ThemeProvider } from "styled-components";
+import {
+  Card,
+  Paragraph,
+  Divider,
+  Button,
+  InputText,
+  Clock,
+} from "./components/atoms";
+import {
+  FaCarrot,
+  FaLemon,
+  FaPepperHot,
+  FaPersonBooth,
+  FaUser,
+} from "react-icons/fa";
+import { Menu } from "./components/organisms";
+import { MenuButton } from "./components/molecules";
+import { hasFormSubmit } from "@testing-library/user-event/dist/utils";
+const invert = ({ primary, secondary }) => ({
   primary: secondary,
   secondary: primary,
-}; */
+});
 
 const menuData = [
   {
-    icon:<FaAngry></FaAngry>,
-    text:"Pas Content",
-    value:"angry",
+    icon: <FaPepperHot></FaPepperHot>,
+    text: "Chili",
+    data: "chili",
   },
   {
-    icon:<FaSmile></FaSmile>,
-    text:"Content",
-    value:"happy",
+    icon: <FaCarrot></FaCarrot>,
+    text: "Carrot",
+    data: "carrot",
   },
   {
-    icon:<FaSadCry></FaSadCry>,
-    text:"Triste",
-    value:"sad",
-  }
+    icon: <FaLemon></FaLemon>,
+    text: "Lemon",
+    data: "lemon",
+  },
 ];
 
 function App() {
-  console.log("Render APP")
-  let color = "blue"
+  const [page, setPage] = useState("lemon");
+
+  const renderPage = () => {
+    switch (page) {
+      case "carrot":
+        return <div><Clock/></div>;
+        break;
+      case "lemon":
+        return <div>Lemon</div>;
+        break;
+
+      default:
+      case "chili":
+        return <div>Chilly</div>;
+        break;
+    }
+  };
+
+  const handler = (pageName) => {
+    setPage(pageName);
+  };
+
   return (
-    <React.Fragment>
-      <InputText></InputText>
-    <Button icon={<FaUser />}></Button>
-      <Card>
-        Alan Wake II
-        <Paragraph>Test</Paragraph>
-      </Card>
-      <Divider bgColor="blue"></Divider>
+    <>
+      <Menu data={menuData} handler={handler}></Menu>
+      <InputText />
+      {renderPage()}
+      {/* <Card />
+
+      <ThemeProvider theme={invert}>
+        <Card />
+      </ThemeProvider>
+
       <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Paragraph></Paragraph>
-      
-    </React.Fragment>
+      <Paragraph></Paragraph> */}
+    </>
   );
 }
 
