@@ -1,9 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Card, Paragraph, Divider, Button } from './components/atoms';
+import { Card, Paragraph, Divider, Button, InputText } from './components/atoms';
 import { FaAngry, FaSadCry, FaSmile, FaUser } from 'react-icons/fa';
-
 /* const invert = ({primary,secondary}) =>{
   primary: secondary,
   secondary: primary,
@@ -32,6 +31,7 @@ function App() {
   let color = "blue"
   return (
     <React.Fragment>
+      <InputText></InputText>
     <Button icon={<FaUser />}></Button>
       <Card>
         Alan Wake II
