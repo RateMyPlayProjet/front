@@ -2,12 +2,31 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Card, Paragraph, Divider, Button } from './components/atoms';
-import { FaUser } from 'react-icons/fa';
+import { FaAngry, FaSadCry, FaSmile, FaUser } from 'react-icons/fa';
 
 /* const invert = ({primary,secondary}) =>{
   primary: secondary,
   secondary: primary,
 }; */
+
+const menuData = [
+  {
+    icon:<FaAngry></FaAngry>,
+    text:"Pas Content",
+    value:"angry",
+  },
+  {
+    icon:<FaSmile></FaSmile>,
+    text:"Content",
+    value:"happy",
+  },
+  {
+    icon:<FaSadCry></FaSadCry>,
+    text:"Triste",
+    value:"sad",
+  }
+];
+
 function App() {
   console.log("Render APP")
   let color = "blue"

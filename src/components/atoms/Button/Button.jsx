@@ -7,9 +7,9 @@ background: ${(props) => props.background ? props.background :props.theme.second
 color: ${(props) => props.color ? props.color :props.theme.primary};
 `;
 
-const Button = ({icon =(<></>), text=""}) =>{
+const Button = ({icon =(<></>), text=""}, ...props) =>{
     return(
-        <StyledButton>
+        <StyledButton {... props}>
             {icon}{text}
         </StyledButton>
     )
