@@ -1,14 +1,14 @@
 import React from "react";
-import style from "./Paragraph.module.css";
-import { FaRegHeart, FaPlus  } from "react-icons/fa";
-const Paragraph = () => {
-    return <div className={style.genre}>
-        <FaRegHeart />
-        <FaPlus />
-        <p>Genre(s) :
-            -Jeu d'horreur</p>
-        <div className={style.btnInfo}>Plus d'info</div>
-    </div>;
+import styled from 'styled-components';
+
+const StyledParagraph = styled.h3`
+    color: #846AF8;
+    font-size: 36px;
+    font-family: 'Coolvetica', sans-serif;
+`;
+
+const Paragraph = ({ paragraph = "", ...props }) => {
+    return <StyledParagraph {...props}>{paragraph}</StyledParagraph>;
 };
 
 export default Paragraph;

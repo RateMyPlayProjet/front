@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Button } from "../../atoms";
+import { Button } from "../../atoms"; 
+import styled from 'styled-components';
+import {FaSearch} from "react-icons/fa";
+
+const StyledDiv = styled.div`
+  padding-top: 5px;
+  align-items: center;
+  width: 33%;
+  margin: auto;
+`;
 
 const MenuButton = ({ handler, data, icon = <></>, ...props }) => {
   const [colorButton, setColorButton] = useState(false);
@@ -7,12 +16,13 @@ const MenuButton = ({ handler, data, icon = <></>, ...props }) => {
     handler(data);
   };
   return (
-    <Button
-      onClick={handlePageChange}
-      color={colorButton}
-      text={props.children}
-      icon={icon}
-    ></Button>
+    <StyledDiv>
+      <Button
+        onClick={handlePageChange}
+        color={colorButton}
+        text={props.children}
+      ></Button>
+    </StyledDiv>
   );
 };
 

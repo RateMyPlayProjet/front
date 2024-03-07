@@ -1,26 +1,9 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { ThemeProvider } from "styled-components";
-import {
-  Card,
-  Paragraph,
-  Divider,
-  Button,
-  InputText,
-  Clock,
-} from "./components/atoms";
-import {
-  FaCarrot,
-  FaLemon,
-  FaPepperHot,
-  FaPersonBooth,
-  FaUser,
-} from "react-icons/fa";
 import { Menu } from "./components/organisms";
-import { MenuButton } from "./components/molecules";
-import { hasFormSubmit } from "@testing-library/user-event/dist/utils";
-import HttpExample from "./components/atoms/HttpExample/HttpExample";
+import AlaUne from "./components/organisms/AlaUne/AlaUne";
+import { GroupTitle } from "./components/molecules"; // Importez GroupTitle depuis son emplacement correct
 
 const invert = ({ primary, secondary }) => ({
   primary: secondary,
@@ -29,19 +12,23 @@ const invert = ({ primary, secondary }) => ({
 
 const menuData = [
   {
-    icon: <FaPepperHot></FaPepperHot>,
-    text: "Chili",
-    data: "chili",
+    text: "Notes",
+    data: "notes",
   },
   {
-    icon: <FaCarrot></FaCarrot>,
-    text: "Carrot",
-    data: "carrot",
+    text: "RollRover",
+    data: "rollRover",
   },
   {
-    icon: <FaLemon></FaLemon>,
-    text: "Lemon",
-    data: "lemon",
+    text: "Ma liste",
+    data: "liste",
+  },
+];
+
+const alaUne = [
+  {
+    text: "A la Une",
+    paragraph: "Suicide Squad : Kill the justice league",
   },
 ];
 
@@ -53,7 +40,7 @@ function App() {
       case "carrot":
         return (
           <div>
-            <Clock />
+            {/* <Clock /> */}
           </div>
         );
         break;
@@ -74,18 +61,9 @@ function App() {
 
   return (
     <>
-      <HttpExample></HttpExample>
       <Menu data={menuData} handler={handler}></Menu>
-      <InputText />
+      <AlaUne data={alaUne}/>
       {renderPage()}
-      {/* <Card />
-
-      <ThemeProvider theme={invert}>
-        <Card />
-      </ThemeProvider>
-
-      <Card></Card>
-      <Paragraph></Paragraph> */}
     </>
   );
 }

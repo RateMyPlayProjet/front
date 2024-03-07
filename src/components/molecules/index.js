@@ -1,3 +1,3 @@
 import MenuButton from "./MenuButton/MenuButton";
-
-export { MenuButton };
+import MenuProfil from "./MenuProfil/MenuProfil";
+export { MenuButton, MenuProfil };
