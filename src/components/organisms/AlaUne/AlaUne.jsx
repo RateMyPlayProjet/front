@@ -1,7 +1,7 @@
 import React from "react";
 import { Title, Paragraph } from "../../atoms";
 import { GroupTitle, MenuButton } from "../../molecules";
-import style from "./AlaUne.module.css";
+import style from '../../atoms/Card/Card.module.css';
 import fond from '../../../img/image.png'
 
 import styled from 'styled-components';
@@ -23,7 +23,7 @@ const AlaUne = ({ data }) => {
         let { text, paragraph } = x;
         return (
             <StyledDiv>
-                <Title text ={x.text}>{text}</Title> {/* Utilisez children comme prop title */}
+                <Title fontSize="48px" text ={x.text}>{text}</Title> {/* Utilisez children comme prop title */}
                 <Paragraph paragraph ={x.paragraph}>{paragraph}</Paragraph> {/* Utilisez children directement pour afficher le paragraphe */}
             </StyledDiv> 
         );

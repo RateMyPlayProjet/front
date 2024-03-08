@@ -7,5 +7,7 @@ import Clock from "./Clock/Clock";
 import Logo from "./Logo/Logo";
 import Profil from "./Profil/Profil";
 import Title from "./Title/Title";
-
-export {Card,Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title};
+import Section from "./Section/Section";
+import Genre from "./Genre/Genre";
+import Image from "./Image/Image";
+export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image};

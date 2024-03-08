@@ -1,0 +1,25 @@
+.container{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto; /* Active le défilement horizontal */
+  width: 100%; /* Définit la largeur maximale de la section *//* Define the scrollbar style */
+}
+
+/* Define the scrollbar style */
+.container::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+  }
+  
+/* Define the thumb style */
+.container::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom right, #3FA9F9 0%, #3FA9F9 100%);
+    border-radius: 5px;
+}
+
+/* Define the track style */
+.container::-webkit-scrollbar-track:horizontal {
+background-color: rgba(90,145,249,0.25);
+box-shadow: inset 0 0 2px 2px #333;
+}

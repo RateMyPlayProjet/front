@@ -1,9 +1,4 @@
-.title{
-    color : #3FA9F9;
-    font-family: "Exo 2", sans-serif;
-    font-size: 16px;
-    padding-left: 15px;
-}
+
 .styleCard{
     width: 370px;
     height: 156px;
@@ -15,9 +10,4 @@
 .flex{
     display: flex;
     flex-direction: row;
-}
-
-.img{
-    width: 100px;
-    height: 133.33px;
 }

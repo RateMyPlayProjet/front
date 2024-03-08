@@ -4,22 +4,32 @@ import { styled } from "styled-components";
 import img1 from '../../../img/alanWakeII.png'
 
 const CardStyle = styled.div`
-background-color: ${(props) =>props.theme.secondary ?? "white"};
-color:${(props) =>props.theme.primary ?? "white"};
+    min-width: 370px;
+    min-height: 156px;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px;
+    display:flex;
 `;
+
+const StyledDiv = styled.div`
+    color : #3FA9F9;
+    font-family: "Exo 2", sans-serif;
+    font-size: 16px;
+    padding-left: 15px;
+    display: flex;
+
+`;
+
 
 const Card = ({backgroundColor="rgba(90,145,249,0.25)", ...props}) => {
     /* return <CardStyle {...props}>{"Cette card n'a pas de contenu"}</CardStyle>; */
-    let content = "Contenu du card"
-    return <div className={style.styleCard} style={{backgroundColor:backgroundColor}}>
-        <div className={style.flex}>
-        <img className={style.img} src={img1} alt="Alan Wake II"/>
-            <h1 className={style.title}>
-                {props.children || "Cette card n'a pas de contenu"}
-            </h1>
-        </div>
-        
-    </div>;
+    return (
+    <CardStyle style={{backgroundColor:backgroundColor}}>
+        <StyledDiv >
+            {props.children || "Cette card n'a pas de contenu"}
+        </StyledDiv>
+    </CardStyle>);
 };
 
 export default Card;

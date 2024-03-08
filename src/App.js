@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { ThemeProvider } from "styled-components";
-import { Menu } from "./components/organisms";
-import AlaUne from "./components/organisms/AlaUne/AlaUne";
-import { GroupTitle } from "./components/molecules"; // Importez GroupTitle depuis son emplacement correct
+import { GroupCard, Menu, AlaUne} from "./components/organisms";
 
 const invert = ({ primary, secondary }) => ({
   primary: secondary,
@@ -22,6 +19,29 @@ const menuData = [
   {
     text: "Ma liste",
     data: "liste",
+  },
+];
+
+const card = [
+  {
+    title: "Alan Wake II",
+    text: "Jeu d'horreur",
+  },
+  {
+    title: "Nouveautés",
+    text: "Jeu d'action",
+  },
+  {
+    title: "The Last of Us",
+    text: "Jeu d'action",
+  },
+  {
+    title: "Fortnite",
+    text: "Jeu d'action",
+  },
+  {
+    title: "The Last of Us",
+    text: "Jeu d'action",
   },
 ];
 
@@ -63,6 +83,9 @@ function App() {
     <>
       <Menu data={menuData} handler={handler}></Menu>
       <AlaUne data={alaUne}/>
+      <GroupCard key="1" data={card}></GroupCard>
+      <GroupCard key="2" data={card}></GroupCard>
+      <GroupCard key="3" data={card}></GroupCard>
       {renderPage()}
     </>
   );
