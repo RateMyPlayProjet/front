@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { GroupCard, Menu, AlaUne} from "./components/organisms";
+import src from './img/SilentHill.png';
 
 const invert = ({ primary, secondary }) => ({
   primary: secondary,
@@ -24,22 +25,27 @@ const menuData = [
 
 const card = [
   {
+    src: "/static/media/alanWakeII.cde56ce5c506a59b34a0.png",
     title: "Alan Wake II",
     text: "Jeu d'horreur",
   },
   {
+    src: "/static/media/SilentHill.21636f1cbe6d1266efa3.png",
     title: "Nouveautés",
     text: "Jeu d'action",
   },
   {
+    src: "/static/media/alanWakeII.cde56ce5c506a59b34a0.png",
     title: "The Last of Us",
     text: "Jeu d'action",
   },
   {
+    src: "/static/media/SilentHill.21636f1cbe6d1266efa3.png",
     title: "Fortnite",
     text: "Jeu d'action",
   },
   {
+    src: "/static/media/alanWakeII.cde56ce5c506a59b34a0.png",
     title: "The Last of Us",
     text: "Jeu d'action",
   },
@@ -78,7 +84,7 @@ function App() {
   const handler = (pageName) => {
     setPage(pageName);
   };
-
+  console.log(src);
   return (
     <>
       <Menu data={menuData} handler={handler}></Menu>

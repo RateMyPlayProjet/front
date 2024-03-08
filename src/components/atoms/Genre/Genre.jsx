@@ -6,10 +6,10 @@ const StyledDiv = styled.div`
     color: white;
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
-    font-weight: normal;
 `;
-const StyleH4 = styled.h4`
-    color: white
+const StyleH4 = styled.p`
+    color: white;
+    font-weight: normal;
 `;
 const Genre = ({genre = "", text="", ...props}) => {
     return(
