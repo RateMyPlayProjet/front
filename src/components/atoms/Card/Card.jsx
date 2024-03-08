@@ -16,6 +16,7 @@ const StyledDiv = styled.div`
     color : #3FA9F9;
     font-family: "Exo 2", sans-serif;
     font-size: 16px;
+    width: -webkit-fill-available;
     padding-left: 15px;
     display: flex;
 

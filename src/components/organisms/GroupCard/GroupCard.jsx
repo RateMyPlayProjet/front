@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Card, Genre, Title, Image } from "../../atoms"; 
 import styled from 'styled-components';
 import style from "./GroupCard.module.css";
-import { FaStar } from "react-icons/fa";
+import { FaPlus, FaStar, FaHeart } from "react-icons/fa";
 import { GroupNote } from "../../molecules";
 const StyledDiv1 = styled.div`
   display: flex;
@@ -11,11 +11,17 @@ const StyledDiv1 = styled.div`
 
 const StyledInfo = styled.div`
   margin-left: 15px;
+  width: 100%;
 `;
 
 const StyledNote = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const StyledBtn = styled.div`
+  display: flex;
+  float: right;
 `;
 
 const StyleStar = styled.div`
@@ -24,13 +30,22 @@ const StyleStar = styled.div`
   padding:2px;
 `;
 
-const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",title="", ...props }) => {
+const StyledTitle = styled.div`
+  display: flex;
+`;
+
+const StyledIcon = styled.div`
+
+  float: right;
+`;
+
+const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",title="", categ="", category, ...props }) => {
   const handlePageChange = () => {
     handler(data);
   };
   return (
     <StyledDiv1>
-      <Title fontFamily="'Coolvetica'" fontSize="24px" color="#FFF">Nouveautés</Title>
+      <Title fontFamily="'Coolvetica'" fontSize="24px" color="#FFF">{categ}</Title>
       <div className={style.container}>
         {data.map((x, i) => { /* foreach */
           let { text, title, src, note } = x;
@@ -91,10 +106,18 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
             <Card key={i}>
               <Image src={src}></Image>
               <StyledInfo>
-                <Title fontFamily="'Exo2" fontSize="16px">{title}</Title>
+                <StyledTitle>
+                  <Title fontFamily="'Exo2" fontSize="16px">{title}</Title>
+                  <StyledIcon>
+                    <FaPlus></FaPlus>
+                    <FaHeart></FaHeart>
+                  </StyledIcon>
+                </StyledTitle>
                 <Genre text ={x.text}>{text}</Genre>
                   <GroupNote>{noteStar()}</GroupNote>
-                <Button width="121px;" height="27px" borderRadius="30px" backgroundColor="#846AF8" text="Plus d'info" onClick={handlePageChange} />
+                <StyledBtn>
+                  <Button width="121px;" height="27px" borderRadius="30px" backgroundColor="#846AF8" text="Plus d'info" onClick={handlePageChange} />
+                </StyledBtn>
               </StyledInfo>
               
             </Card>

@@ -23,7 +23,7 @@ const menuData = [
   },
 ];
 
-const card = [
+const news = [
   {
     note: "5",
     src: "/static/media/alanWakeII.cde56ce5c506a59b34a0.png",
@@ -56,6 +56,39 @@ const card = [
   },
 ];
 
+const recommandations = [
+  {
+    note: "5",
+    src: "/static/media/alanWakeII.cde56ce5c506a59b34a0.png",
+    title: "Alan Wake II",
+    text: "Jeu d'horreur",
+  },
+  {
+    note: "2",
+    src: "/static/media/SilentHill.21636f1cbe6d1266efa3.png",
+    title: "Nouveautés",
+    text: "Jeu d'action",
+  },
+  {
+    note: "1",
+    src: "/static/media/alanWakeII.cde56ce5c506a59b34a0.png",
+    title: "The Last of Us",
+    text: "Jeu d'action",
+  },
+];
+
+const categories = [
+  {
+    categ:"Nouveautés",
+  },
+  {
+    categ:"Nouveautés",
+  },
+  {
+    categ:"Nouveautés",
+  },
+];
+
 const alaUne = [
   {
     text: "A la Une",
@@ -85,31 +118,6 @@ function App() {
         break;
     }
   };
-  /* const noteStar = () => {
-    switch (note) {
-      case "1":
-        return (
-          <div>
-           
-          </div>
-        );
-        break;
-      case "2":
-        return <div>Lemon</div>;
-        break;
-      case "3":
-        return <div>Chilly</div>;
-        break;
-      case "4":
-        return <div>Chilly</div>;
-        break;
-      case "5":
-        return <div>Chilly</div>;
-        break;
-    }
-}}; */
-  const stars = card["0"].note;
-  /* console.log(stars); */
   const handler = (pageName) => {
     setPage(pageName);
   };
@@ -117,9 +125,9 @@ function App() {
     <>
       <Menu data={menuData} handler={handler}></Menu>
       <AlaUne data={alaUne}/>
-      <GroupCard key="1" data={card}></GroupCard>
-      <GroupCard key="2" data={card}></GroupCard>
-      <GroupCard key="3" data={card}></GroupCard>
+      <GroupCard key="1" data={news} category={categories}></GroupCard>
+      <GroupCard key="2" data={recommandations}></GroupCard>
+      <GroupCard key="3" data={news}></GroupCard>
       {renderPage()}
     </>
   );

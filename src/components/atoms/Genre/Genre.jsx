@@ -7,17 +7,20 @@ const StyledDiv = styled.div`
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
 `;
-const StyleH4 = styled.p`
+const StyledH4 = styled.p`
     color: white;
     font-weight: normal;
+`;
+const StyledP = styled.p`
+    margin:0;
 `;
 const Genre = ({genre = "", text="", ...props}) => {
     return(
     <StyledDiv>
-        <StyleH4 {...props}>
+        <StyledH4 {...props}>
             Genre(s)
-            <p {...props}>- {text}</p>
-        </StyleH4>
+            <StyledP {...props}>- {text}</StyledP>
+        </StyledH4>
     </StyledDiv>
     );
 }
