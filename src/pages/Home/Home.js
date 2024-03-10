@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./Home.css";
 import { GroupCard, Menu, AlaUne} from "../../components/organisms";
-import src from './img/SilentHill.png';
 
-const invert = ({ primary, secondary }) => ({
+/* const invert = ({ primary, secondary }) => ({
   primary: secondary,
   secondary: primary,
-});
+}); */
 
 const menuData = [
   {
@@ -77,18 +76,6 @@ const recommandations = [
   },
 ];
 
-const categories = [
-  {
-    categ:"Nouveautés",
-  },
-  {
-    categ:"Nouveautés",
-  },
-  {
-    categ:"Nouveautés",
-  },
-];
-
 const alaUne = [
   {
     text: "A la Une",
@@ -125,9 +112,9 @@ function Home() {
     <>
       <Menu data={menuData} handler={handler}></Menu>
       <AlaUne data={alaUne}/>
-      <GroupCard key="1" data={news} category={categories}></GroupCard>
-      <GroupCard key="2" data={recommandations}></GroupCard>
-      <GroupCard key="3" data={news}></GroupCard>
+      <GroupCard key="1" data={news} categ="Nouveautés"></GroupCard>
+      <GroupCard key="2" data={recommandations} categ="Jeux du moment"></GroupCard>
+      <GroupCard key="3" data={news} categ="Ma liste"></GroupCard>
       {renderPage()}
     </>
   );

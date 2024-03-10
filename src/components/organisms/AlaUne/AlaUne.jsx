@@ -7,7 +7,9 @@ import fond from '../../../img/image.png'
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
+    padding:26px;
     margin-top: 56px;
+    margin-left: 20px;
 `;
 const StyledDiv1 = styled.div`
   background-image: url(${fond});
