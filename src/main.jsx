@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login"
+import Inscription from "./pages/Inscription/Inscription";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home/>,
+  },
+  {
+    path: "/register",
+    element: <Inscription/>,
   },
 ]);
 

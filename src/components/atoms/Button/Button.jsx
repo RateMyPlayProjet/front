@@ -6,6 +6,7 @@ ${(props) => props.width ? 'width: '+ props.width + " ; " : " "};
 ${(props) => props.colorText ? 'color: '+ props.colorText + " ; " : "color: white"};
 ${(props) => props.backgroundColor ? 'background-color: '+ props.backgroundColor + " ; " : 'background: none;' };
 ${(props) => props.borderRadius ? 'border-radius: '+ props.borderRadius + " ; " : '' };
+${(props) => props.fontSize ? 'font-size: '+ props.fontSize + " ; " : '' };
 ${(props) => props.border ? 'border-color: '+ props.border + " ; " : 'border: none;' };
 font-family: 'Coolvetica', sans-serif;
 `;

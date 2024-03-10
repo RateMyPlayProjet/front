@@ -2,22 +2,23 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 
 const StyledInput = styled.input`
-    height:35px;
-    width: 300px;
+    ${(props) => props.height ? 'height: '+ props.height + " ; " : "height:35px;" };
+    ${(props) => props.width ? 'width: '+ props.width + " ; " : "width: 300px;" };
+    ${(props) => props.marginLeft ? 'margin-left: '+ props.marginLeft + " ; " : "" };
     font-size: 14px;
     border-radius: 10px;
-    color: #FFFFFF;
+    color: #333;
     background-color: rgba(255,255,250,0.5);
 `;
 
-const InputText = () => {
+const InputText = ({icon =(<></>), text="",  ...props}) => {
     const [value, setValue] = useState("");
     const handleText = (e) =>{
         if(value !== e.target.value){
             setValue(e.target.value);
         }
     };
-  return <StyledInput /* onChange={handleText} */ />;
+  return <StyledInput {...props} />;
   
 }
 

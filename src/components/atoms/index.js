@@ -11,4 +11,6 @@ import Section from "./Section/Section";
 import Genre from "./Genre/Genre";
 import Image from "./Image/Image";
 import Note from "./Note/Note";
-export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image, Note};
+import Link from "./Link/Link";
+import InputPassword from "./InputPassword/InputPassword";
+export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image, Note, Link, InputPassword};

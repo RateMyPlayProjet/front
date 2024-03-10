@@ -1,5 +1,5 @@
 import React from "react";
-import { Auth } from "../../molecules";
+import { Form } from "../../molecules";
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -7,12 +7,12 @@ const StyledDiv = styled.div`
     justify-content: center;
 `;
 
-const Authentification = ({ handler, data }) => {
+const Register = ({ handler, data }) => {
   return (
     <StyledDiv>
-      <Auth/>
+      <Form/>
     </StyledDiv>
   );
 };
 
-export default Authentification;
+export default Register;

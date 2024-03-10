@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Authentification } from "../../components/organisms";
+import { Register } from "../../components/organisms";
 import styled from "styled-components";
 import fond from "../../img/fondLogin.png";
 
@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
     background-position: center; /* Centre l'image */
 `;
 
-function Login() {
+function Inscription() {
   const [page, setPage] = useState("lemon");
 
   useEffect(() => {
@@ -42,10 +42,10 @@ function Login() {
   return (
     <>
       <StyledDiv>
-        <Authentification />
+        <Register />
       </StyledDiv>
     </>
   );
 }
 
-export default Login;
+export default Inscription;
