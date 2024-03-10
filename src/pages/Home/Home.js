@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./App.css";
-import { GroupCard, Menu, AlaUne} from "./components/organisms";
+import "./Home.css";
+import { GroupCard, Menu, AlaUne} from "../../components/organisms";
 import src from './img/SilentHill.png';
 
 const invert = ({ primary, secondary }) => ({
@@ -96,7 +96,7 @@ const alaUne = [
   },
 ];
 
-function App() {
+function Home() {
   const [page, setPage] = useState("lemon");
 
   const renderPage = () => {
@@ -125,12 +125,12 @@ function App() {
     <>
       <Menu data={menuData} handler={handler}></Menu>
       <AlaUne data={alaUne}/>
-      <GroupCard key="1" data={news} categ="Nouveautés"></GroupCard>
-      <GroupCard key="2" data={recommandations} categ="Jeux du moment"></GroupCard>
-      <GroupCard key="3" data={news} categ="Ma liste"></GroupCard>
+      <GroupCard key="1" data={news} category={categories}></GroupCard>
+      <GroupCard key="2" data={recommandations}></GroupCard>
+      <GroupCard key="3" data={news}></GroupCard>
       {renderPage()}
     </>
   );
 }
 
-export default App;
+export default Home;

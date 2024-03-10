@@ -7,6 +7,8 @@ import { GroupNote } from "../../molecules";
 const StyledDiv1 = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 15px;
+  margin-left:20px;
 `;
 
 const StyledInfo = styled.div`
@@ -35,8 +37,9 @@ const StyledTitle = styled.div`
 `;
 
 const StyledIcon = styled.div`
-
-  float: right;
+  display: flex;
+  margin-left: 100px;
+  align-items: center;
 `;
 
 const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",title="", categ="", category, ...props }) => {
@@ -45,7 +48,7 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
   };
   return (
     <StyledDiv1>
-      <Title fontFamily="'Coolvetica'" fontSize="24px" color="#FFF">{categ}</Title>
+      <Title fontFamily="'Coolvetica'" fontSize="24px" margin="0 0 8px 0" color="#FFF">{categ}</Title>
       <div className={style.container}>
         {data.map((x, i) => { /* foreach */
           let { text, title, src, note } = x;
@@ -56,7 +59,7 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
                 return <StyledNote>
                 <FaStar color="3FA9F9"/>
                 {note}/5
-              </StyledNote>;;
+              </StyledNote>;
                 break;
               case "2":
                 return <StyledNote>

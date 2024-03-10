@@ -8,7 +8,7 @@ const CardStyle = styled.div`
     min-height: 156px;
     border-radius: 15px;
     padding: 15px;
-    margin: 20px;
+    margin: 10px 15px;
     display:flex;
 `;
 
