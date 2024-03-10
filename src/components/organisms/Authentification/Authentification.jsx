@@ -8,7 +8,6 @@ import MenuProfil from "../../molecules/MenuProfil/MenuProfil";
 const StyledDiv = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 5%;
 `;
 
 const Authentification = ({ handler, data }) => {

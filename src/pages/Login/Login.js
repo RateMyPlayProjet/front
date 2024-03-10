@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Authentification } from "../../components/organisms";
 import styled from "styled-components";
-import fond from "../../img/fondLogin.png"
+import fond from "../../img/fondLogin.png";
 
 const StyledDiv = styled.div`
     background-image: url(${fond});
+    height: 100vh; /* Assure que le fond s'étend sur toute la hauteur de la fenêtre */
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir toute la zone */
+    background-position: center; /* Centre l'image */
 `;
+
 function Login() {
   const [page, setPage] = useState("lemon");
+
+  useEffect(() => {
+    // Réinitialiser l'arrière-plan du body lors du démontage du composant
+    return () => {
+      document.body.style.backgroundImage = "none";
+    };
+  }, []); // Effet s'exécute uniquement une fois lors du montage initial
 
   const renderPage = () => {
     switch (page) {
@@ -17,32 +28,23 @@ function Login() {
             {/* <Clock /> */}
           </div>
         );
-        break;
       case "lemon":
         return <div>Lemon</div>;
-        break;
-
       default:
       case "chili":
         return <div>Chilly</div>;
-        break;
     }
   };
+
   const handler = (pageName) => {
     setPage(pageName);
   };
+
   return (
     <>
-    <StyledDiv>
-        <Authentification/>
-    </StyledDiv>
-     
-      {/* <Menu data={menuData} handler={handler}></Menu>
-      <AlaUne data={alaUne}/>
-      <GroupCard key="1" data={news} categ="Nouveautés"></GroupCard>
-      <GroupCard key="2" data={recommandations} categ="Jeux du moment"></GroupCard>
-      <GroupCard key="3" data={news} categ="Ma liste"></GroupCard>
-      {renderPage()} */}
+      <StyledDiv>
+        <Authentification />
+      </StyledDiv>
     </>
   );
 }
