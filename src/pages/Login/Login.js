@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import { GroupCard, Menu, AlaUne} from "../../components/organisms";
+import { Authentification } from "../../components/organisms";
+import styled from "styled-components";
+import fond from "../../img/fondLogin.png"
 
+const StyledDiv = styled.div`
+    background-image: url(${fond});
+`;
 function Login() {
   const [page, setPage] = useState("lemon");
 
@@ -28,6 +33,10 @@ function Login() {
   };
   return (
     <>
+    <StyledDiv>
+        <Authentification/>
+    </StyledDiv>
+     
       {/* <Menu data={menuData} handler={handler}></Menu>
       <AlaUne data={alaUne}/>
       <GroupCard key="1" data={news} categ="Nouveautés"></GroupCard>

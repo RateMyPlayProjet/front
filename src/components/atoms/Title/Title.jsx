@@ -6,6 +6,7 @@ const StyledH1 = styled.h1`
     ${(props) => props.fontSize ? 'font-size: '+ props.fontSize + " ; " : "font-size: 48px; " };
     ${(props) => props.fontFamily ? 'font-family: '+ props.fontFamily + " ; " : "font-family: 'MADE Soulmaze', sans-serif; " };
     ${(props) => props.margin ? 'margin: '+ props.margin + " ; " : "margin: auto;" };
+    ${(props) => props.textAlign ? 'text-align: '+ props.textAlign + " ; " : "text-align: left;" };
 
 `;
 
