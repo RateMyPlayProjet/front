@@ -45,7 +45,7 @@ const StyledIcon = styled.div`
 `;
 
 const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",title="", categ="", category, ...props }) => {
-  const [titles, setTitles] = useState([]);
+  const [games, setGames] = useState([]);
   const handlePageChange = () => {
     handler(data);
   };
@@ -62,9 +62,7 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
     
     axios.request(config)
     .then((response) => {
-      const gameData = response.data;
-      const gameTitles = gameData.map(game => game.name); // Récupérer les noms des jeux
-      setTitles(gameTitles); // Mettre à jour le state avec les noms des jeux
+      setGames(response.data);
     })
     .catch((error) => {
       console.log(error);
@@ -74,8 +72,8 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
     <StyledDiv1>
       <Title fontFamily="'Coolvetica'" fontSize="24px" margin="0 0 8px 0" color="#FFF">{categ}</Title>
       <div className={style.container}>
-        {data.map((x, i) => { /* foreach */
-          let { text, title, src, note } = x;
+        {games.map((game, i) => { /* foreach */
+        let {note} = game;
           const noteStar = () => {
             console.log(note);
             switch (note) {
@@ -131,18 +129,16 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
           }
           return (
             <Card key={i}>
-              <Image src={src}></Image>
+              {/* <Image src={src}></Image> */}
               <StyledInfo>
                 <StyledTitle>
-                  {titles.map((title, index) => (
-                    <Title fontFamily="'Exo2" fontSize="16px">{title}</Title>
-                  ))}
+                  <Title fontFamily="'Exo2" fontSize="16px">{game.name}</Title>
                   <StyledIcon>
                     <FaPlus></FaPlus>
                     <FaHeart></FaHeart>
                   </StyledIcon>
                 </StyledTitle>
-                <Genre text ={x.text}>{text}</Genre>
+                  <Genre>{game.genre.join(", ")}</Genre>
                   <GroupNote>{noteStar()}</GroupNote>
                 <StyledBtn>
                   <Button width="121px;" height="27px" borderRadius="30px" backgroundColor="#846AF8" text="Plus d'info" onClick={handlePageChange} />
