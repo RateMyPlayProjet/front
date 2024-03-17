@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Utilisez useNavigate au lieu de useHistory
 import { InputText, Title, Button } from "../../atoms"; 
 import styled from 'styled-components';
-
+import axios from "axios";
 
 const StyledDiv = styled.div`
     width: 546px;
@@ -27,10 +27,21 @@ const StyledDivForm = styled.div`
 `;
 
 const Auth = ({ handler, data, ...props }) => {
-  const navigate = useNavigate(); 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handlePageChange = () => {
-    navigate("/home");
+  const handleLogin = () => {
+    axios.post('http://localhost:8000/api/login_check', { username, password })
+      .then(response => {
+        const token = response.data.token; // Assurez-vous d'adapter cette partie selon la structure de votre réponse
+        // Stockez le token localement (par exemple, dans le stockage local ou dans l'état global)
+        // Redirigez l'utilisateur vers la page '/home'
+        navigate("/home");
+      })
+      .catch(error => {
+        console.error("Erreur de connexion:", error);
+      });
   };
 
   return (
@@ -38,12 +49,12 @@ const Auth = ({ handler, data, ...props }) => {
         <Title textAlign="center" fontFamily="'MADE Soulmaze'" fontSize="24px" margin="0 0 8px 0" color="#333">Login</Title>
         <StyledDivForm>
           <StyledDivInput>
-              <Title fontFamily="'Coolvetica'" fontSize="20px" margin="0 0 8px 0" color="#333">Email:</Title>
-              <InputText/>
+              <Title fontFamily="'Coolvetica'" fontSize="20px" margin="0 0 8px 0" color="#333">Username :</Title>
+              <InputText value={username} onChange={(e) => setUsername(e.target.value)} />
           </StyledDivInput>
           <StyledDivInput>
               <Title fontFamily="'Coolvetica'" fontSize="20px" margin="0 0 8px 0" color="#333">Mot de passe :</Title>
-              <InputText/>
+              <InputText type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </StyledDivInput>
         </StyledDivForm>
         <Button 
@@ -54,10 +65,10 @@ const Auth = ({ handler, data, ...props }) => {
           colorText="#3D2DEF"
           fontSize="16px"
           border="#3D2DEF"
-          onClick={handlePageChange}
+          onClick={handleLogin}
           text="Connexion"
         />
-        <Link fontFamily="'Coolvetica'" fontSize="14px" margin="0 0 8px 0" color="#333">Vous n'avez pas de compte ? Inscrivez-vous</Link>
+        <Link to="/signup" fontFamily="'Coolvetica'" fontSize="14px" margin="0 0 8px 0" color="#333">Vous n'avez pas de compte ? Inscrivez-vous</Link>
     </StyledDiv>
   );
 };
