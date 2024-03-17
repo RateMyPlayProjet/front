@@ -1,6 +1,5 @@
 import React from "react";
 import { GameInfo } from "../../molecules";
-import fond from '../../../img/image.png'
 
 import styled from 'styled-components';
 

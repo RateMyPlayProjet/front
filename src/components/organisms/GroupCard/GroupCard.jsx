@@ -50,8 +50,8 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
   const { token } = useParams();
   const navigate = useNavigate();
 
-  const handlePageChange = () => {
-    navigate(`/home/${token}`);
+  const handlePageChange = (id) => {
+    navigate(`/game/${id}/${token}`);
   };
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
         {games.map((game, i) => {
           let {note} = game;
           const noteStar = () => {
-            console.log(note);
+            /* console.log(note); */
             switch (note) {
               case "1":
                 return <StyledNote>
@@ -142,10 +142,14 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
                     <FaHeart></FaHeart>
                   </StyledIcon>
                 </StyledTitle>
-                  <Genre>{game.genre.join(", ")}</Genre>
+                  <Genre>
+                    {game.genre.map((genre, index) => (
+                      <div key={index}>- {genre}</div>
+                    ))}
+                  </Genre>
                   <GroupNote>{noteStar()}</GroupNote>
                 <StyledBtn>
-                  <Button width="121px;" height="27px" borderRadius="30px" backgroundColor="#846AF8" text="Plus d'info" onClick={handlePageChange} />
+                  <Button width="121px;" height="27px" borderRadius="30px" backgroundColor="#846AF8" text="Plus d'info" onClick={() => handlePageChange(game.id)} />
                 </StyledBtn>
               </StyledInfo>
             </Card>

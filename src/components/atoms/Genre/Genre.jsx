@@ -14,12 +14,12 @@ const StyledH4 = styled.p`
 const StyledP = styled.p`
     margin:0;
 `;
-const Genre = ({genre = "", text="", ...props}) => {
+const Genre = ({...props}) => {
     return(
     <StyledDiv>
         <StyledH4 {...props}>
             Genre(s)
-            <StyledP {...props}>- {text}</StyledP>
+            <StyledP {...props}>{props.children}</StyledP>
         </StyledH4>
     </StyledDiv>
     );

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Title, Text, Note } from "../../atoms"; 
 import styled from 'styled-components';
 import GroupNote from "../GroupNote/GroupNote";
-import { FaPlus, FaStar, FaHeart } from "react-icons/fa";
 import fond from '../../../img/alanDetails.jpg';
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const StyledDiv = styled.div`
   background-image: url(${fond});
@@ -26,73 +27,48 @@ const StyleStar = styled.div`
 `;
 
 const GameInfo = ({ handler, data, note, icon = <></>, iconSize="20px", ...props }) => {
-  const noteStar = () => {
-      console.log(note); // Utilisez la valeur de note provenant des props
-      switch (note) {
-        case "1":
-          return (
-            <StyledNote>
-              <FaStar color="3FA9F9"/>
-              {note}/5
-            </StyledNote>
-          );
-        case "2":
-          return (
-            <StyledNote>
-              <StyleStar>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-              </StyleStar>
-              {note}/5
-            </StyledNote>
-          );
-        case "3":
-          return (
-            <StyledNote>
-              <StyleStar>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-              </StyleStar>
-              {note}/5
-            </StyledNote>
-          );
-        case "4":
-          return (
-            <StyledNote>
-              <StyleStar>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-              </StyleStar>
-              {note}/5
-            </StyledNote>
-          );
-        case "5":
-          return (
-            <StyledNote>
-              <StyleStar>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-                <FaStar color="3FA9F9"/>
-              </StyleStar>
-              {note}/5
-            </StyledNote>
-          );
-        default:
-          return null;
+  const [game, setGame] = useState(null); // Initialisez l'état local game à null
+
+  const { token, id } = useParams();
+
+  useEffect(() => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `http://localhost:8000/api/game/${id}`,
+      headers: { 
+        'Authorization': `Bearer ${token}`
       }
-    }
-return (
-  <StyledDiv>
-      <Title margin="0" fontSize="32px">Alan Wake II</Title>
-      <Title margin="0" fontFamily="Coolvetica" fontSize="20px" color="#846AF8">Genre(s) : Jeu d'horreur</Title>
-      <Text>Le studio derrière Control présente un jeu d'horreur et de survie psychologique avec deux protagonistes et deux mondes très différents. Saga Anderson est une agente du FBI talentueuse appelée pour enquêter sur une série de meurtres rituels dans la petite ville de Bright Falls, au nord de la côte ouest des États-Unis.</Text>
-      <GroupNote>{noteStar()}</GroupNote> {/* Appel de la fonction noteStar sans paramètre */}
-  </StyledDiv>
+    };
+
+    axios.request(config)
+      .then((response) => {
+        setGame(response.data); // Mettez à jour l'état local game avec les données de l'API
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [token, id]); // Assurez-vous de déclencher la requête chaque fois que token ou id change
+
+  const noteStar = (note) => {
+    // Votre code de gestion des étoiles de note
+  };
+
+  return (
+    <StyledDiv>
+      {game && ( // Vérifiez si game est défini avant de l'utiliser
+        <>
+          <Title margin="0" fontSize="32px">{game.name}</Title>
+          <Title margin="0" fontFamily="Coolvetica" fontSize="20px" color="#846AF8">Genre(s) : 
+            {game.genre.map((genre, index) => (
+              <div key={index}>- {genre}</div>
+            ))}
+          </Title>
+          <Text>{game.description}</Text>
+          <GroupNote>{noteStar(game.note)}</GroupNote>
+        </>
+      )}
+    </StyledDiv>
   );
 };
 

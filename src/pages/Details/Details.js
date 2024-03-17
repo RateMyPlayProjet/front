@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { InfoGame, Menu, Comments} from "../../components/organisms";
-import styled from "styled-components";
-
-const recommandations = [
-  {
-    note: "5",
-  },
-];
+import React from "react";
+import { InfoGame, Menu} from "../../components/organisms";
 
 const menuData = [
   {
@@ -23,23 +16,18 @@ const menuData = [
   },
 ];
 
-const comments = [
-  {
-    paragraph: "Notes",
-  },
-];
 
 function Details() {
-  const [page, setPage] = useState("lemon");
+  /* const [page, setPage] = useState("lemon");
 
   const handler = (pageName) => {
     setPage(pageName);
-  };
+  }; */
   return (
     <>
-      <Menu data={menuData} handler={handler}></Menu>
-      <InfoGame data={recommandations}/>
-      <Comments paragraph={comments}></Comments>
+      <Menu data={menuData}></Menu>
+      <InfoGame/>
+      {/* <Comments paragraph={comments}></Comments> */}
     </>
   );
 }
