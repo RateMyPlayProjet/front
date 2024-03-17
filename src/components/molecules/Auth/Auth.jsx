@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"; // Utilisez useNavigate au
 import { InputText, Title, Button } from "../../atoms"; 
 import styled from 'styled-components';
 
+
 const StyledDiv = styled.div`
     width: 546px;
     height: 546px;

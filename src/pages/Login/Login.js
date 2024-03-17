@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import axios from 'axios';
 import { Authentification } from "../../components/organisms";
 import styled from "styled-components";
 import fond from "../../img/fondLogin.png";
@@ -11,38 +12,31 @@ const StyledDiv = styled.div`
 `;
 
 function Login() {
-  const [page, setPage] = useState("lemon");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    return () => {
-      document.body.style.backgroundImage = "none";
-    };
-  }, []);
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Pour éviter que le formulaire ne se soumette de manière conventionnelle
 
-  const renderPage = () => {
-    switch (page) {
-      case "carrot":
-        return (
-          <div>
-            {/* <Clock /> */}
-          </div>
-        );
-      case "lemon":
-        return <div>Lemon</div>;
-      default:
-      case "chili":
-        return <div>Chilly</div>;
+    try {
+      const response = await axios.post('http://localhost:8000/api/login_check', {
+        username: username,
+        password: password,
+      });
+      console.log(response.data); // Traitez la réponse du backend ici
+    } catch (error) {
+      console.error('Erreur lors de la connexion :', error);
     }
-  };
-
-  const handler = (pageName) => {
-    setPage(pageName);
   };
 
   return (
     <>
       <StyledDiv>
-        <Authentification />
+        <Authentification 
+          onSubmit={handleSubmit}
+          setUsername={setUsername}
+          setPassword={setPassword}
+        />
       </StyledDiv>
     </>
   );

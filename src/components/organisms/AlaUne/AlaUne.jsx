@@ -25,8 +25,8 @@ const AlaUne = ({ data }) => {
         let { text, paragraph } = x;
         return (
             <StyledDiv>
-                <Title fontSize="48px" text ={x.text}>{text}</Title> {/* Utilisez children comme prop title */}
-                <Paragraph paragraph ={x.paragraph}>{paragraph}</Paragraph> {/* Utilisez children directement pour afficher le paragraphe */}
+                <Title fontSize="48px" text ={x.text}>{text}</Title>
+                <Paragraph paragraph ={x.paragraph}>{paragraph}</Paragraph> 
             </StyledDiv> 
         );
       })}

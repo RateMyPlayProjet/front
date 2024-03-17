@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Home.css";
+import { HttpExample } from "../../components/atoms";
 import { GroupCard, Menu, AlaUne} from "../../components/organisms";
-
+import { Link, useNavigate } from "react-router-dom";
 /* const invert = ({ primary, secondary }) => ({
   primary: secondary,
   secondary: primary,
@@ -84,23 +85,23 @@ const alaUne = [
 ];
 
 function Home() {
-  const [page, setPage] = useState("lemon");
+  const [page, setPage] = useState("notes");
 
   const renderPage = () => {
     switch (page) {
-      case "carrot":
+      case "notes":
         return (
           <div>
-            {/* <Clock /> */}
+            Hello world !
           </div>
         );
         break;
-      case "lemon":
+      case "rollRover":
         return <div>Lemon</div>;
         break;
 
       default:
-      case "chili":
+      case "liste":
         return <div>Chilly</div>;
         break;
     }
@@ -112,6 +113,7 @@ function Home() {
     <>
       <Menu data={menuData} handler={handler}></Menu>
       <AlaUne data={alaUne}/>
+      <HttpExample></HttpExample>
       <GroupCard key="1" data={news} categ="Nouveautés"></GroupCard>
       <GroupCard key="2" data={recommandations} categ="Jeux du moment"></GroupCard>
       <GroupCard key="3" data={news} categ="Ma liste"></GroupCard>

@@ -3,4 +3,6 @@ import MenuProfil from "./MenuProfil/MenuProfil";
 import GroupNote from "./GroupNote/GroupNote";
 import Auth from "./Auth/Auth";
 import Form from "./Form/Form";
-export { MenuButton, MenuProfil, GroupNote, Auth, Form };
+import GameInfo from "./GameInfo/GameInfo";
+import ProfilPublication from "./ProfilPublication/ProfilPublication";
+export { MenuButton, MenuProfil, GroupNote, Auth, Form, GameInfo, ProfilPublication };
