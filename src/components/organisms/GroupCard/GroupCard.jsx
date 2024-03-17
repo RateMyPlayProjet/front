@@ -5,6 +5,7 @@ import style from "./GroupCard.module.css";
 import { FaPlus, FaStar, FaHeart } from "react-icons/fa";
 import { GroupNote } from "../../molecules";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 const StyledDiv1 = styled.div`
   display: flex;
@@ -46,8 +47,11 @@ const StyledIcon = styled.div`
 
 const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",title="", categ="", category, ...props }) => {
   const [games, setGames] = useState([]);
+  const { token } = useParams();
+  const navigate = useNavigate();
+
   const handlePageChange = () => {
-    handler(data);
+    navigate(`/home/${token}`);
   };
 
   useEffect(() => {
@@ -56,7 +60,7 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
       maxBodyLength: Infinity,
       url: 'http://localhost:8000/api/game',
       headers: { 
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTA2Nzg0OTUsImV4cCI6MTcxMDY4MjA5NSwicm9sZXMiOlsiQURNSU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhZG1pbiJ9.I1rhXvzPRDcIMWzovuEJQ6I7VZJdohJ4sySXAEnnQrkDz4itONMMLcbTDC0_Qr7fKDxXbWB_1vpl2HhT0uFXOyPRRDaJe6mbP-qpAspq2xgd_Kk6PXS40STu5YDc1f1kvLntMOBu2ZVMz1Fu13xH_JEGzJhXxJtsldQBv4Ck2ijEYa_dpSB6ELqXuZWUi-R1ED-HjOwJJAazZjcNHlf5FNbWeC9XMf2cR-fYIKpN1n8zGuQz1Vo0_8xRX6EjJIuW4TSA6lNDcLr_r3Wj2UWOcDEbv8rIxUeuEbooNveWC5CLCoWlMXd2VUbFF4SdYH69VXAxo3ySDdELsgk-qX0l4bkI5A4KZ_cvGAYgZY8eHVnMxFXHS9GvHUj5yCbwJBB_EQwh6JQq83IJ6dYjDJss8YMuUiaNe9cmkK-BdFk_IiSsubtVnyfsRBQ7d_EiaIaicapUe5qBkG6V3XoVxM8AM3Jkl9cFGlVwUeXZHWfe4uWDBia40joPM_buYT4sd4wD2b--t0XuU4DKSI1QNn4AtwAsmOagUgkHYMYJD3GtBoP2Kk5CZ_CJ_BSKEH6uAsgcI4P48DD1owqqy63jgM9tNbQ6gl7r84wNkgdAT4Rc7AcXYI-6CO9rOrm87YrcH_x44qmKnK0AbMz9E87F7MU6WEuW3TAl27OFsu1wXFS30l0'
+        'Authorization': `Bearer ${token}`
       }
     };
     
@@ -67,13 +71,14 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
     .catch((error) => {
       console.log(error);
     });
-  }, []);
+  }, [token]);
+
   return (
     <StyledDiv1>
       <Title fontFamily="'Coolvetica'" fontSize="24px" margin="0 0 8px 0" color="#FFF">{categ}</Title>
       <div className={style.container}>
-        {games.map((game, i) => { /* foreach */
-        let {note} = game;
+        {games.map((game, i) => {
+          let {note} = game;
           const noteStar = () => {
             console.log(note);
             switch (note) {
@@ -129,7 +134,6 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
           }
           return (
             <Card key={i}>
-              {/* <Image src={src}></Image> */}
               <StyledInfo>
                 <StyledTitle>
                   <Title fontFamily="'Exo2" fontSize="16px">{game.name}</Title>
@@ -144,15 +148,11 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
                   <Button width="121px;" height="27px" borderRadius="30px" backgroundColor="#846AF8" text="Plus d'info" onClick={handlePageChange} />
                 </StyledBtn>
               </StyledInfo>
-              
             </Card>
-            
           );
         })}
-        
       </div>
     </StyledDiv1>
-    
   );
 };
 

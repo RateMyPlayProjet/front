@@ -37,7 +37,7 @@ const Auth = ({ handler, data, ...props }) => {
         const token = response.data.token; // Assurez-vous d'adapter cette partie selon la structure de votre réponse
         // Stockez le token localement (par exemple, dans le stockage local ou dans l'état global)
         // Redirigez l'utilisateur vers la page '/home'
-        navigate("/home");
+        navigate(`/home/${token}`);
       })
       .catch(error => {
         console.error("Erreur de connexion:", error);
