@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Title, Text, Note } from "../../atoms"; 
+import { Title, Text, Genre } from "../../atoms"; 
 import styled from 'styled-components';
 import GroupNote from "../GroupNote/GroupNote";
 import fond from '../../../img/alanDetails.jpg';
+import { FaStar } from "react-icons/fa";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -27,7 +28,7 @@ const StyleStar = styled.div`
 `;
 
 const GameInfo = ({ handler, data, note, icon = <></>, iconSize="20px", ...props }) => {
-  const [game, setGame] = useState(null); // Initialisez l'état local game à null
+  const [game, setGame] = useState([]); // Initialisez l'état local game à null
 
   const { token, id } = useParams();
 
@@ -49,21 +50,67 @@ const GameInfo = ({ handler, data, note, icon = <></>, iconSize="20px", ...props
         console.log(error);
       });
   }, [token, id]); // Assurez-vous de déclencher la requête chaque fois que token ou id change
-
+  
   const noteStar = (note) => {
-    // Votre code de gestion des étoiles de note
+    switch (note) {
+      case "1":
+        return <StyledNote>
+        <FaStar color="3FA9F9"/>
+        {note}/5
+      </StyledNote>;
+        break;
+      case "2":
+        return <StyledNote>
+          <StyleStar>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+          </StyleStar>
+          {note}/5
+        </StyledNote>;
+        break;
+      case "3":
+        return <StyledNote>
+          <StyleStar>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+          </StyleStar>
+          {note}/5
+        </StyledNote>;
+        break;
+      case "4":
+        return <StyledNote>
+          <StyleStar>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+          </StyleStar>
+          {note}/5
+        </StyledNote>;
+        break;
+      case "5":
+        return <StyledNote>
+          <StyleStar>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+          </StyleStar>
+          {note}/5
+        </StyledNote>;
+        break;
+    }
   };
-
   return (
     <StyledDiv>
-      {game && ( // Vérifiez si game est défini avant de l'utiliser
+      {game && (
         <>
-          <Title margin="0" fontSize="32px">{game.name}</Title>
-          <Title margin="0" fontFamily="Coolvetica" fontSize="20px" color="#846AF8">Genre(s) : 
-            {game.genre.map((genre, index) => (
-              <div key={index}>- {genre}</div>
-            ))}
-          </Title>
+          <Title margin="0" marginLeft="15px" fontSize="32px">{game.name}</Title>
+          <Genre margin="0" marginLeft="15px" fontFamily="Coolvetica" fontSize="20px" color="#846AF8"> 
+            {game.genre && game.genre.join(", ")}
+          </Genre>
           <Text>{game.description}</Text>
           <GroupNote>{noteStar(game.note)}</GroupNote>
         </>

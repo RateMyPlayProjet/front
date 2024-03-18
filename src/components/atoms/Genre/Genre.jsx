@@ -8,7 +8,12 @@ const StyledDiv = styled.div`
     font-size: 14px;
 `;
 const StyledH4 = styled.p`
-    color: white;
+    ${(props) => props.color ? 'color: '+ props.color + " ; " : "color: white; " };
+    ${(props) => props.fontSize ? 'font-size: '+ props.fontSize + " ; " : "font-size: 16px; " };
+    ${(props) => props.fontFamily ? 'font-family: '+ props.fontFamily + " ; " : "font-family: 'Montserrat', sans-serif; " };
+    ${(props) => props.margin ? 'margin: '+ props.margin + " ; " : "margin: auto;" };
+    ${(props) => props.textAlign ? 'text-align: '+ props.textAlign + " ; " : "text-align: left;" };
+    ${(props) => props.marginLeft ? 'margin-left: '+ props.marginLeft + " ; " : "" };
     font-weight: normal;
 `;
 const StyledP = styled.p`
@@ -18,7 +23,7 @@ const Genre = ({...props}) => {
     return(
     <StyledDiv>
         <StyledH4 {...props}>
-            Genre(s)
+            Genre(s) : 
             <StyledP {...props}>{props.children}</StyledP>
         </StyledH4>
     </StyledDiv>
