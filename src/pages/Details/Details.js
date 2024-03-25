@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoGame, Menu} from "../../components/organisms";
+import { InfoGame, Menu, Comments} from "../../components/organisms";
 
 const menuData = [
   {
@@ -27,7 +27,7 @@ function Details() {
     <>
       <Menu data={menuData}></Menu>
       <InfoGame/>
-      {/* <Comments paragraph={comments}></Comments> */}
+      <Comments></Comments>
     </>
   );
 }

@@ -18,7 +18,8 @@ const StyledDiv1 = styled.div`
 const Comments = ({ data, paragraph="", }) => {
     return (
       <StyledDiv1>
-        {data.map((x, i) => {
+        <ProfilPublication/>
+        {/* {data.map((x, i) => {
         let {paragraph} = x;
         return (
             <StyledDiv key={i}> 
@@ -27,7 +28,7 @@ const Comments = ({ data, paragraph="", }) => {
                 <Paragraph paragraph ={x.paragraph}>{paragraph}</Paragraph>
             </StyledDiv> 
         );
-    })}
+    })} */}
 
       </StyledDiv1>
     );
