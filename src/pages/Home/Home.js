@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Home.css";
+import { Image } from "../../components/atoms";
 import { GroupCard, Menu, AlaUne} from "../../components/organisms";
 
 /* const invert = ({ primary, secondary }) => ({

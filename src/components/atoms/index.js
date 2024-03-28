@@ -15,6 +15,5 @@ import Link from "./Link/Link";
 import InputPassword from "./InputPassword/InputPassword";
 import Text from "./Text/Text";
 import Username from "./Username/Username";
-import Date from "./Date/Date";
 import TitleCard from "./TitleCard/TitleCard";
-export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image, Note, Link, InputPassword, Text, Username, Date,TitleCard};
+export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image, Note, Link, InputPassword, Text, Username, TitleCard};

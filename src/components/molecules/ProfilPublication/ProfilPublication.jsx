@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Profil, Username, Date } from "../../atoms"; 
+import { Profil, Username, Text } from "../../atoms"; 
 import { useParams } from "react-router-dom"; // Importez useParams de react-router-dom
 import axios from "axios";
 import styled from 'styled-components';
@@ -9,11 +9,10 @@ const StyledDiv = styled.div`
 `;
 
 const StyledDivInfo = styled.div`
-  width: 7%;
   margin-top: auto;
   margin-bottom: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
 const ProfilPublication = ({ data }) => {
@@ -28,7 +27,7 @@ const ProfilPublication = ({ data }) => {
         'Authorization': `Bearer ${token}`
       }
     };
-
+  
     axios.request(config)
       .then((response) => {
         setNotices(response.data)
@@ -38,14 +37,16 @@ const ProfilPublication = ({ data }) => {
       });
   }, [token]);
 
+  
+
   return (
     <StyledDiv>
       {notices.map((notice, i) => {
         if (notice.game.id == id) {
           return (
             <StyledDiv key={i}>
-              {/* <Profil src={x.src}></Profil> */}
               <StyledDivInfo>
+                {/* <Profil src={`http://localhost:8000${notice.user.picture.publicPath}/${notice.user.picture.realPath}`} /> */}
                 <Username>{notice.user.username}</Username>
               </StyledDivInfo>
             </StyledDiv> 
@@ -54,7 +55,9 @@ const ProfilPublication = ({ data }) => {
           return null;
         }
       })}
-    </StyledDiv>
+  </StyledDiv>
+
+
   );
 };
 

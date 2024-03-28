@@ -47,12 +47,40 @@ const StyledIcon = styled.div`
 
 const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",title="", categ="", category, ...props }) => {
   const [games, setGames] = useState([]);
+  const [imageUrls, setImageUrls] = useState({});
   const { token } = useParams();
   const navigate = useNavigate();
 
   const handlePageChange = (id) => {
     navigate(`/game/${id}/${token}`);
   };
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let imageData = {};
+        for (const game of games) {
+          const config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: `http://localhost:8000/api/images/game/96`,
+            headers: { 
+              'Authorization': `Bearer ${token}`
+            },
+            responseType: 'arraybuffer'
+          };
+          const response = await axios.request(config);
+          const blob = new Blob([response.data], { type: response.headers['content-type'] });
+          const imageUrl = URL.createObjectURL(blob);
+          imageData[game.id] = imageUrl;
+        }
+        setImageUrls(imageData);
+      } catch (error) {
+        console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
+      }
+    };
+    fetchData();
+  }, [games, token]);
 
   useEffect(() => {
     let config = {
@@ -80,14 +108,12 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
         {games.map((game, i) => {
           let {note} = game;
           const noteStar = () => {
-            /* console.log(note); */
             switch (note) {
               case "1":
                 return <StyledNote>
                 <FaStar color="3FA9F9"/>
                 {note}/5
               </StyledNote>;
-                break;
               case "2":
                 return <StyledNote>
                   <StyleStar>
@@ -96,7 +122,6 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
                   </StyleStar>
                   {note}/5
                 </StyledNote>;
-                break;
               case "3":
                 return <StyledNote>
                   <StyleStar>
@@ -106,7 +131,6 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
                   </StyleStar>
                   {note}/5
                 </StyledNote>;
-                break;
               case "4":
                 return <StyledNote>
                   <StyleStar>
@@ -117,7 +141,6 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
                   </StyleStar>
                   {note}/5
                 </StyledNote>;
-                break;
               case "5":
                 return <StyledNote>
                   <StyleStar>
@@ -129,11 +152,13 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
                   </StyleStar>
                   {note}/5
                 </StyledNote>;
-                break;
+              default:
+                return null;
             }
           }
           return (
             <Card key={i}>
+              <Image src={imageUrls[game.id]}></Image>
               <StyledInfo>
                 <StyledTitle>
                   <Title fontFamily="'Exo2" fontSize="16px">{game.name}</Title>

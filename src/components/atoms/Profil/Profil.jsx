@@ -8,8 +8,8 @@ const StyledDiv = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 57px;
+  height: 57px;
   border-radius: 50%;
 `;
 
