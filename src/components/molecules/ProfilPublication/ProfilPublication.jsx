@@ -40,11 +40,17 @@ const ProfilPublication = () => {
             },
             responseType: 'arraybuffer'
           };
-          const response = await axios.request(config);
-          const blob = new Blob([response.data], { type: response.headers['content-type'] });
-          const imageUrl = URL.createObjectURL(blob);
-          userData[userId] = imageUrl;
-          console.log(userData[userId])
+          const pictures = notice.user.picture;
+          if(pictures != null){
+            console.log(notice.user.id)
+            const response = await axios.request(config);
+            const blob = new Blob([response.data], { type: response.headers['content-type'] });
+            const imageUrl = URL.createObjectURL(blob);
+            userData[notice.user.id] = imageUrl;
+          }
+          
+          /* setUser(userId.picture_id) */
+          
         }
         setImageUrls(userData);
       } catch (error) {
@@ -59,12 +65,12 @@ const ProfilPublication = () => {
       {notices.map((notice, i) => (
         <StyledDiv key={i}>
           <StyledDivInfo>
-            {/* {notice.user.id === 105 && (
+            {notice.user.id && (
               <>
                 <Profil src={imageUrls[notice.user.id]} />
                 <Username>{notice.user.username}</Username>
               </>
-            )} */}
+            )}
           </StyledDivInfo>
         </StyledDiv> 
       ))}

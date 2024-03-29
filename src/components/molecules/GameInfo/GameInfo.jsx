@@ -87,7 +87,6 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
         const blob = new Blob([response.data], { type: response.headers['content-type'] });
         const imageUrl = URL.createObjectURL(blob);
         imageData[id] = imageUrl;
-        console.log(imageUrl)
         setImageUrls(imageData);
         
         
@@ -100,7 +99,6 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
   }, [token, id, game]);
 
   const noteStar = () => {
-    console.log(note)
     switch (note) {
       case "1":
         return <StyledNote>
