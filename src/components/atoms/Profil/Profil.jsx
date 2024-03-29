@@ -13,10 +13,10 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-const Profil = ({ src }) => {
+const Profil = ({...props} ) => {
   return (
     <StyledDiv>
-      <StyledImage src={src} alt="Profile Image" />
+      <StyledImage {...props} />
     </StyledDiv>
   );
 };

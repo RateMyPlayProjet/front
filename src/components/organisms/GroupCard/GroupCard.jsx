@@ -54,40 +54,6 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
   const handlePageChange = (id) => {
     navigate(`/game/${id}/${token}`);
   };
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let imageData = {};
-        for (const game of games) {
-          const config = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: `http://localhost:8000/api/images/game/${game.id}`,
-            headers: { 
-              'Authorization': `Bearer ${token}`
-            },
-            responseType: 'arraybuffer'
-          };
-          console.log(config.url)
-          if(game.id == 96){
-            const response = await axios.request(config);
-            const blob = new Blob([response.data], { type: response.headers['content-type'] });
-            const imageUrl = URL.createObjectURL(blob);
-            imageData[game.id] = imageUrl;
-          }else{
-            console.log("Ca ne fonctionne pas")
-          }
-          
-
-        }
-        setImageUrls(imageData);
-      } catch (error) {
-        console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
-      }
-    };
-    fetchData();
-  }, [games, token]);
 
   useEffect(() => {
     let config = {
@@ -107,6 +73,38 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
       console.log(error);
     });
   }, [token]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let imageData = {};
+        for (const game of games) {
+          const config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: `http://localhost:8000/api/images/game/${game.id}`,
+            headers: { 
+              'Authorization': `Bearer ${token}`
+            },
+            responseType: 'arraybuffer'
+          };
+          if(game.id != null){
+            const response = await axios.request(config);
+            const blob = new Blob([response.data], { type: response.headers['content-type'] });
+            const imageUrl = URL.createObjectURL(blob);
+            imageData[game.id] = imageUrl;
+          }else{
+            console.log("Ca ne fonctionne pas")
+          }
+
+        }
+        setImageUrls(imageData);
+      } catch (error) {
+        console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
+      }
+    };
+    fetchData();
+  }, [games, token]);
 
   return (
     <StyledDiv1>

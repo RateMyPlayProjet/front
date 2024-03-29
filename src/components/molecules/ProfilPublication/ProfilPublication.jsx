@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Profil, Username, Text } from "../../atoms"; 
-import { useParams } from "react-router-dom"; // Importez useParams de react-router-dom
+import { Profil, Username } from "../../atoms"; 
 import axios from "axios";
 import styled from 'styled-components';
+import { useParams } from "react-router-dom";
 
-const StyledDiv = styled.div`
-  
-`;
-
+const StyledDiv = styled.div``;
 const StyledDivInfo = styled.div`
   margin-top: auto;
   margin-bottom: auto;
@@ -15,49 +12,63 @@ const StyledDivInfo = styled.div`
   flex-direction: row;
 `;
 
-const ProfilPublication = ({ data }) => {
+const ProfilPublication = () => {
   const [notices, setNotices] = useState([]);
-  const { token, id } = useParams(); // Utilisez useParams de react-router-dom
+  const [imageUrls, setImageUrls] = useState({});
+  const { token } = useParams(); // Utilisez useParams pour récupérer le token
+
   useEffect(() => {
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'http://localhost:8000/api/notice',
-      headers: { 
-        'Authorization': `Bearer ${token}`
+    const fetchData = async () => {
+      try {
+        let userData = {};
+        // Récupérer les données des publications
+        const response = await axios.get("http://localhost:8000/api/notice", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const noticesData = response.data;
+        setNotices(noticesData);
+
+        // Récupérer les images des utilisateurs associés à chaque publication
+        for (const notice of noticesData) {
+          const userId = notice.user.id;
+          const config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: `http://localhost:8000/api/images/user/${userId}`,
+            headers: { 
+              'Authorization': `Bearer ${token}`
+            },
+            responseType: 'arraybuffer'
+          };
+          const response = await axios.request(config);
+          const blob = new Blob([response.data], { type: response.headers['content-type'] });
+          const imageUrl = URL.createObjectURL(blob);
+          userData[userId] = imageUrl;
+          console.log(userData[userId])
+        }
+        setImageUrls(userData);
+      } catch (error) {
+        console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
       }
     };
-  
-    axios.request(config)
-      .then((response) => {
-        setNotices(response.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    fetchData();
   }, [token]);
-
-  
 
   return (
     <StyledDiv>
-      {notices.map((notice, i) => {
-        if (notice.game.id == id) {
-          return (
-            <StyledDiv key={i}>
-              <StyledDivInfo>
-                {/* <Profil src={`http://localhost:8000${notice.user.picture.publicPath}/${notice.user.picture.realPath}`} /> */}
+      {notices.map((notice, i) => (
+        <StyledDiv key={i}>
+          <StyledDivInfo>
+            {/* {notice.user.id === 105 && (
+              <>
+                <Profil src={imageUrls[notice.user.id]} />
                 <Username>{notice.user.username}</Username>
-              </StyledDivInfo>
-            </StyledDiv> 
-          );
-        } else {
-          return null;
-        }
-      })}
-  </StyledDiv>
-
-
+              </>
+            )} */}
+          </StyledDivInfo>
+        </StyledDiv> 
+      ))}
+    </StyledDiv>
   );
 };
 
