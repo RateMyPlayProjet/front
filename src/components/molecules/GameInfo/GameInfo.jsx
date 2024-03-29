@@ -39,13 +39,13 @@ const StyledNote = styled.div`
 
 const StyleStar = styled.div`
   margin-right: 10px;
+  margin-left:10px;
   text-align: center;
   padding:2px;
 `;
 
 const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) => {
   const [game, setGame] = useState(null);
-  const [fondBackgroundImage, setFondBackgroundImage] = useState(null);
   const [note, setNote] = useState(null);
   const { token, id } = useParams();
   const [imageUrls, setImageUrls] = useState({});

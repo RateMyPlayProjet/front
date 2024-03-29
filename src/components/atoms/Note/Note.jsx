@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
   display: flex;
   color: white;
-  margin-left:10px;
 `;
 
 const Note = ({ text }) => {

@@ -6,7 +6,7 @@ const StyledText = styled.p`
     font-size: 14px;
     text-align: justify;
     font-family: 'Montserrat', sans-serif;
-    margin-top:0;
+    margin:0;
     max-width: 529px;
 `;
 

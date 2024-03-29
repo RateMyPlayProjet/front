@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Profil, Username } from "../../atoms"; 
+import { Profil, Username, Text } from "../../atoms"; 
 import axios from "axios";
 import styled from 'styled-components';
 import { useParams } from "react-router-dom";
+import moment from 'moment';
 
-const StyledDiv = styled.div``;
+const StyledDiv = styled.div`
+  margin-top: 30px;
+`;
+
+const StyledUserInfo = styled.div`
+  margin: 0;
+`;
+
 const StyledDivInfo = styled.div`
   margin-top: auto;
   margin-bottom: auto;
@@ -12,9 +20,11 @@ const StyledDivInfo = styled.div`
   flex-direction: row;
 `;
 
+
 const ProfilPublication = () => {
   const [notices, setNotices] = useState([]);
   const [imageUrls, setImageUrls] = useState({});
+  const [note, setNote] = useState(null);
   const { token } = useParams(); // Utilisez useParams pour récupérer le token
 
   useEffect(() => {
@@ -42,17 +52,15 @@ const ProfilPublication = () => {
           };
           const pictures = notice.user.picture;
           if(pictures != null){
-            console.log(notice.user.id)
             const response = await axios.request(config);
             const blob = new Blob([response.data], { type: response.headers['content-type'] });
             const imageUrl = URL.createObjectURL(blob);
             userData[notice.user.id] = imageUrl;
           }
           
-          /* setUser(userId.picture_id) */
-          
         }
         setImageUrls(userData);
+        setNote(notices[0].note)
       } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
       }
@@ -60,6 +68,9 @@ const ProfilPublication = () => {
     fetchData();
   }, [token]);
 
+  const formatDate = (date) => {
+    return moment(date).format('DD/MM/YYYY'); // Formatage de la date avec Moment.js
+  };
   return (
     <StyledDiv>
       {notices.map((notice, i) => (
@@ -68,7 +79,11 @@ const ProfilPublication = () => {
             {notice.user.id && (
               <>
                 <Profil src={imageUrls[notice.user.id]} />
-                <Username>{notice.user.username}</Username>
+                <StyledUserInfo>
+                  <Username>{notice.user.username}</Username>
+                  <Text>{formatDate(notice.createAt)}</Text>
+                </StyledUserInfo>
+                
               </>
             )}
           </StyledDivInfo>

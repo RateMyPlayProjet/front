@@ -3,14 +3,17 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
   display: flex;
-  width: 10%;
+  width: 57px;
+  height: 57px;
   align-items: center;
+  margin-right: 15px;
 `;
 
 const StyledImage = styled.img`
+  border-radius: 50%;
   width: 57px;
   height: 57px;
-  border-radius: 50%;
+  object-fit: cover;
 `;
 
 const Profil = ({...props} ) => {
