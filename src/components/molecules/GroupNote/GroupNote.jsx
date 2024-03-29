@@ -6,6 +6,7 @@ import {FaSearch} from "react-icons/fa";
 const StyledDiv = styled.div`
     display: flex;
     flex-direction: row;
+    margin-top : 10px;
 `;
 
 const GroupNote = ({ handler, data, icon = <></>, ...props }) => {
