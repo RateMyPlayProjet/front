@@ -5,6 +5,7 @@ const StyledInput = styled.input`
     ${(props) => props.height ? 'height: '+ props.height + " ; " : "height:35px;" };
     ${(props) => props.width ? 'width: '+ props.width + " ; " : "width: 300px;" };
     ${(props) => props.marginLeft ? 'margin-left: '+ props.marginLeft + " ; " : "" };
+    ${(props) => props.marginTop ? 'margin-top: '+ props.marginTop + " ; " : "" };
     font-size: 14px;
     border-radius: 10px;
     color: #333;

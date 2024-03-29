@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Text } from "../../atoms"; 
+import { InputText, Text, Button } from "../../atoms"; 
 import { ProfilPublication, GroupNote } from "../../molecules";
 import axios from "axios";
+import style from './Comments.module.css';
 import styled from 'styled-components';
 import { FaStar } from "react-icons/fa";
+import { IoIosSend } from "react-icons/io";
 import { useParams } from "react-router-dom";
 
 const StyledDiv = styled.div`
+  padding-left:15px;
+  padding-top: 5px
 `;
-const StyledDiv1 = styled.div`
-    width: 1200px;
-    min-height: 404px;
-    background-color: rgba(90,145,249,0.25);
-    margin: 20px;
-    border-radius: 15px;
-
+const StyleNewComment = styled.div`
+  display: flex;
+  margin-left: 25px;
+  margin-top: 20px;
 `;
 const StyledComment = styled.div`
   margin-top : 10px;
@@ -33,11 +34,12 @@ const StyleStar = styled.div`
   padding:2px;
 `;
 
-const Comments = () => {
+const Comments = ({iconSize="30px"}) => {
   const [notices, setNotices] = useState([]);
   const [imageUrls, setImageUrls] = useState({});
   const [note, setNote] = useState(null);
-  const { token } = useParams(); // Utilisez useParams pour récupérer le token
+  const { token, id } = useParams(); // Utilisez useParams pour récupérer le token
+  let i = 0;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +50,13 @@ const Comments = () => {
           headers: { Authorization: `Bearer ${token}` }
         });
         const noticesData = response.data;
-        setNotices(noticesData);
+
+        // Filtrer les commentaires avec le game_id correspondant à l'id dans l'URL
+        const filteredNotices = noticesData.filter(notice => notice.game.id === parseInt(id));
+
+        // Mettre à jour les états
+        setNotices(filteredNotices);
+        
 
         // Récupérer les images des utilisateurs associés à chaque publication
         for (const notice of noticesData) {
@@ -72,7 +80,7 @@ const Comments = () => {
           
         }
         setImageUrls(userData);
-        setNote(notices[0].note)
+        setNote(notices[i].note)
       } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
       }
@@ -129,8 +137,11 @@ const Comments = () => {
         return null;
     }
   };
+  const handlePageChange = () => {
+    console.log("hello")
+  };
     return (
-      <StyledDiv1>
+      <div className={style.container}>
         {notices.map((notice, i) => (
           <StyledDiv>
             <ProfilPublication
@@ -148,8 +159,14 @@ const Comments = () => {
               )}
           </StyledDiv>
         ))}
-
-      </StyledDiv1>
+        <StyleNewComment>
+          <InputText width="878px"></InputText>
+          <Button
+          onClick={handlePageChange}
+          icon={<IoIosSend color="#3FA9F9" size={iconSize}/>}
+        ></Button>
+        </StyleNewComment>
+      </div>
     );
   };
   
