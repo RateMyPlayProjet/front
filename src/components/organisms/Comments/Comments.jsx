@@ -90,12 +90,12 @@ const Comments = ({iconSize="30px"}) => {
 
   const noteStar = () => {
     switch (note) {
-      case "1":
+      case 1:
         return <StyledNote>
         <FaStar color="3FA9F9"/>
         {note}/5
       </StyledNote>;
-      case "2":
+      case 2:
         return <StyledNote>
           <StyleStar>
             <FaStar color="3FA9F9"/>
@@ -103,7 +103,7 @@ const Comments = ({iconSize="30px"}) => {
           </StyleStar>
           {note}/5
         </StyledNote>;
-      case "3":
+      case 3:
         return <StyledNote>
           <StyleStar>
             <FaStar color="3FA9F9"/>
@@ -122,7 +122,7 @@ const Comments = ({iconSize="30px"}) => {
           </StyleStar>
           {note}/5
         </StyledNote>; 
-      case "5":
+      case 5:
         return <StyledNote>
           <StyleStar>
             <FaStar color="3FA9F9"/>

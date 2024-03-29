@@ -1,6 +1,6 @@
 import React from "react";
-import { InfoGame, Menu, Comments} from "../../components/organisms";
-
+import { InfoGame, Menu, Comments, PlusInfoGame} from "../../components/organisms";
+import styled from "styled-components";
 const menuData = [
   {
     text: "Notes",
@@ -16,6 +16,11 @@ const menuData = [
   },
 ];
 
+const StyledDiv = styled.div`
+height: 70px;
+color:white;
+display:flex;  
+`;
 
 function Details() {
   /* const [page, setPage] = useState("lemon");
@@ -27,7 +32,11 @@ function Details() {
     <>
       <Menu data={menuData}></Menu>
       <InfoGame/>
-      <Comments></Comments>
+      <StyledDiv>
+        <Comments></Comments>
+        <PlusInfoGame/>
+      </StyledDiv>
+      
     </>
   );
 }

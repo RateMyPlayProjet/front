@@ -1,0 +1,8 @@
+.container{
+    width: 379px;
+    height: 226px;
+    background-color: rgba(90,145,249,0.25);
+    margin: 20px;
+    border-radius: 15px;
+    overflow-y: auto;
+}

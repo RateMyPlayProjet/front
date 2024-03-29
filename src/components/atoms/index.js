@@ -16,4 +16,6 @@ import InputPassword from "./InputPassword/InputPassword";
 import Text from "./Text/Text";
 import Username from "./Username/Username";
 import TitleCard from "./TitleCard/TitleCard";
-export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image, Note, Link, InputPassword, Text, Username, TitleCard};
+import Gamers from "./Gamers/Gamers";
+import Plateformes from "./Plateformes/Plateformes";
+export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image, Note, Link, InputPassword, Text, Username, TitleCard, Gamers, Plateformes};
