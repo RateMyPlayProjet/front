@@ -3,6 +3,7 @@ import { Title, Text, Genre } from "../../atoms";
 import styled from 'styled-components';
 import GroupNote from "../GroupNote/GroupNote";
 import axios from "axios";
+import { FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
 const StyledDiv = styled.div`
@@ -31,9 +32,21 @@ const StyledFond = styled.img`
   object-fit: cover;
 `;
 
-const GameInfo = ({ handler, data, note, icon = <></>, iconSize="20px", ...props }) => {
+const StyledNote = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const StyleStar = styled.div`
+  margin-right: 10px;
+  text-align: center;
+  padding:2px;
+`;
+
+const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) => {
   const [game, setGame] = useState(null);
   const [fondBackgroundImage, setFondBackgroundImage] = useState(null);
+  const [note, setNote] = useState(null);
   const { token, id } = useParams();
   const [imageUrls, setImageUrls] = useState({});
 
@@ -83,10 +96,58 @@ const GameInfo = ({ handler, data, note, icon = <></>, iconSize="20px", ...props
       }
     };
     fetchData();
+    setNote(game?.notices[0]?.note)
   }, [token, id, game]);
 
-  const noteStar = (note) => {
-    // Your noteStar function code...
+  const noteStar = () => {
+    console.log(note)
+    switch (note) {
+      case "1":
+        return <StyledNote>
+        <FaStar color="3FA9F9"/>
+        {note}/5
+      </StyledNote>;
+      case "2":
+        return <StyledNote>
+          <StyleStar>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+          </StyleStar>
+          {note}/5
+        </StyledNote>;
+      case "3":
+        return <StyledNote>
+          <StyleStar>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+          </StyleStar>
+          {note}/5
+        </StyledNote>;
+      case 4:
+        return <StyledNote>
+          <StyleStar>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+          </StyleStar>
+          {note}/5
+        </StyledNote>; 
+      case "5":
+        return <StyledNote>
+          <StyleStar>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+            <FaStar color="3FA9F9"/>
+          </StyleStar>
+          {note}/5
+        </StyledNote>;
+      default:
+        return null;
+    }
   };
   return (
     <StyledDiv>
@@ -102,7 +163,7 @@ const GameInfo = ({ handler, data, note, icon = <></>, iconSize="20px", ...props
             {game.genre && game.genre.join(", ")}
           </Genre>
           <Text>{game.description}</Text>
-          <GroupNote>{noteStar(game.note)}</GroupNote>
+          <GroupNote>{noteStar()}</GroupNote>
         </StyledInfo>
       </>
       )}
