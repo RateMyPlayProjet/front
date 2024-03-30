@@ -86,9 +86,10 @@ const GroupCardGame = () => {
         console.log("Error fetching categories:", error);
       }
     };
-
+  
     fetchCategories();
-  }, [categoryIds, token]);
+  }, []);
+  
 
   const handleCardClick = (gameId) => {
     setSelectedGames([...selectedGames, gameId]);
@@ -96,7 +97,7 @@ const GroupCardGame = () => {
 
   const handlePageChange = () => {
     const selectedGamesIds = selectedGames.join(',');
-    navigate(`/rollRover/${selectedGamesIds}/${token}`);
+    navigate(`/rollRover/games/${selectedGamesIds}/${token}`);
   };
 
   return (

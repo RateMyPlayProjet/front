@@ -8,4 +8,5 @@ import Comments from "./Comments/Comments";
 import PlusInfoGame from "./PlusInfoGame/PlusInfoGame";
 import GroupCardCateg from './GroupCardCateg/GroupCardCateg';
 import GroupCardGame from "./GroupCardGame/GroupCardGame";
-export { Menu , GroupCard, AlaUne, Authentification, Register, PlusInfoGame, InfoGame, Comments, GroupCardCateg, GroupCardGame};
+import RollRover from "./RollRover/RollRover";
+export { Menu , GroupCard, AlaUne, Authentification, Register, PlusInfoGame, InfoGame, Comments, GroupCardCateg, GroupCardGame, RollRover};

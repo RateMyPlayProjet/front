@@ -6,6 +6,7 @@ import Inscription from "./pages/Inscription/Inscription";
 import Details from "./pages/Details/Details";
 import RollRoverPart1 from "./pages/RollRover/RollRoverPart1";
 import RollRoverPart2 from "./pages/RollRover/RollRoverPart2";
+import RollRoverPart3 from "./pages/RollRover/RollRoverPart3";
 
 const Router = () => (
   <BrowserRouter>
@@ -15,7 +16,9 @@ const Router = () => (
       <Route path="/register" element={<Inscription />} />
       <Route path="/game/:id/:token" element={<Details />} />
       <Route path="/rollRover/:token" element={<RollRoverPart1 />} />
-      <Route path="/rollRover/:selectedCategoryIds/:token" element={<RollRoverPart2 />} />
+      <Route path="/rollRover/categories/:selectedCategoryIds/:token" element={<RollRoverPart2 />} />
+      <Route path="/rollRover/games/:selectedGamesIds/:token" element={<RollRoverPart3 />} />
+
     </Routes>
   </BrowserRouter>
 );

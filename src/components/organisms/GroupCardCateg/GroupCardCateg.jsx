@@ -54,7 +54,7 @@ const GroupCard = () => {
 
   const handlePageChange = () => {
     const selectedCategoryIds = selectedCategories.join(',');
-    navigate(`/rollRover/${selectedCategoryIds}/${token}`);
+    navigate(`/rollRover/categories/${selectedCategoryIds}/${token}`);
   };
 
   return (

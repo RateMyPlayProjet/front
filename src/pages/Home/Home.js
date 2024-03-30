@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Home.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Image } from "../../components/atoms";
-import { GroupCard, Menu, AlaUne} from "../../components/organisms";
+import { GroupCard, Menu, AlaUne, RollRover} from "../../components/organisms";
 
 /* const invert = ({ primary, secondary }) => ({
   primary: secondary,
@@ -114,12 +114,13 @@ function Home() {
   };
   return (
     <>
-      <Menu data={menuData} handler={handler}></Menu>
+    <RollRover></RollRover>
+      {/* <Menu data={menuData} handler={handler}></Menu>
       <AlaUne data={alaUne}/>
       <GroupCard key="1" data={news} categ="Nouveautés"></GroupCard>
       <GroupCard key="2" data={recommandations} categ="Jeux du moment"></GroupCard>
       <GroupCard key="3" data={news} categ="Ma liste"></GroupCard>
-      {renderPage()}
+      {renderPage()} */}
     </>
   );
 }
