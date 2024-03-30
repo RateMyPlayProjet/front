@@ -17,9 +17,9 @@ const menuData = [
 ];
 
 const StyledDiv = styled.div`
-height: 70px;
-color:white;
-display:flex;  
+  height: 70px;
+  color:white;
+  display:flex;  
 `;
 
 function Details() {

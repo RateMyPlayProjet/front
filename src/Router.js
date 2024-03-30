@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Inscription from "./pages/Inscription/Inscription";
 import Details from "./pages/Details/Details";
+import RollRover from "./pages/RollRover/RollRoverPart1";
 
 const Router = () => (
   <BrowserRouter>
@@ -12,6 +13,7 @@ const Router = () => (
       <Route path="/home/:token" element={<Home />} />
       <Route path="/register" element={<Inscription />} />
       <Route path="/game/:id/:token" element={<Details />} />
+      <Route path="/rollRover/:token" element={<RollRover />} />
     </Routes>
   </BrowserRouter>
 );

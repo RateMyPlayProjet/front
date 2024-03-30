@@ -6,6 +6,7 @@ import img1 from '../../../img/cards/alanWakeII.png'
 const CardStyle = styled.div`
     min-width: 370px;
     min-height: 156px;
+    max-width: 359px;
     border-radius: 15px;
     padding: 15px;
     margin: 10px 15px;
