@@ -22,56 +22,39 @@ const StyledRow = styled.div`
   justify-content: space-around;
 `;
 
-const StyledInfo = styled.div`
-  margin-left: 15px;
-  width: 100%;
-  margin-bottom: 20px;
-`;
 
-const StyledTitle = styled.div`
-  display: flex;
-`;
-
-const StyledClickableCard = styled(Card)`
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  &:hover {
-    background-color: #f0f0f0;
-  }
-  ${({ isSelected }) => isSelected && `
-    background-color: #f0f0f0;
-  `}
-`;
-
-const GroupCard = ({ data, categ }) => {
-  const [games, setGames] = useState([]);
-  const [imageUrls, setImageUrls] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedCardIndex, setSelectedCardIndex] = useState(-1);
+const GroupCard = () => {
+  const [categories, setCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const { token } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/api/game", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setGames(response.data);
-      } catch (error) {
-        console.error("Une erreur s'est produite lors de la récupération des jeux :", error);
-      }
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:8000/api/category',
+      headers: { 
+        'Authorization': `Bearer ${token}`
+      },
     };
-    fetchGames();
+    
+    axios.request(config)
+    .then((response) => {
+      setCategories(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }, [token]);
 
-  const handleCardClick = (category, index) => {
-    setSelectedCategory(category);
-    setSelectedCardIndex(index);
+  const handleCardClick = (categoryId) => {
+    setSelectedCategories([...selectedCategories, categoryId]);
   };
 
   const handlePageChange = () => {
-    navigate(`/rollRover/${selectedCategory}/${token}`);
+    const selectedCategoryIds = selectedCategories.join(',');
+    navigate(`/rollRover?categories=${selectedCategoryIds}/${token}`);
   };
 
   return (
@@ -80,12 +63,11 @@ const GroupCard = ({ data, categ }) => {
       <Title margin="0" color="#846AF8" fontFamily="'Coolvetica'" fontSize="36px">Laissez la roue décider pour vous !</Title>
       <Text fontSize="20px" marginTop="20px" width="600px" marginBottom="50px">Choisissez vos genres de jeux préférés et lancez-vous !</Text>
       <StyledRow>
-        {games.map((game, i) => (
+        {categories.map((categ, i) => (
           <ClickableCard
-          onClick={() => handleCardClick(categ, i)}
-          title="C'est moi chef"
-          /* title={game.title} */
-          description={game.description}/>
+          onClick={() => handleCardClick(categ.id)}
+          title={categ.name}
+          description={categ.description}/>
         ))}
       </StyledRow>
       <StyledBtn>
