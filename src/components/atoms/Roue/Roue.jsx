@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Title from '../Title/Title';
 import { Wheel } from 'react-custom-roulette';
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -16,13 +17,6 @@ const Roue = () => {
   const [gameNames, setGameNames] = useState([]);
   const gameIds = selectedGamesIds ? selectedGamesIds.split(",") : [];
 
-  useEffect(() => {
-    if (gameNames.length > 0) {
-      setGames(gameNames);
-      console.log("on est ici" + games)
-    }
-  }, [gameNames]);
-  
   useEffect(() => {
     const fetchDataForGameIds = async () => {
       const requests = [];
@@ -55,11 +49,6 @@ const Roue = () => {
   
     
   
-  const wheelData = games.map((gameName, index) => ({
-    option: gameName,
-    style: { backgroundColor: 'blue' }
-  }));
-
   const handleSpinClick = () => {
     if (!mustSpin) {
       const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -70,16 +59,18 @@ const Roue = () => {
 
   return (
     <>
+    {gameNames.length > 0 && (
       <Wheel
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
-        data={games.map((gameName) => ({
+        data={gameNames.map((gameName) => ({
           option: gameName,
         }))}
         onStopSpinning={() => {
           setMustSpin(false);
         }}
       />
+    )}
 
       <button onClick={handleSpinClick}>SPIN</button>
     </>
