@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, ClickableCard, Title, Button, Text } from "../../atoms"; 
+import { Card, ClickableCardForCateg, Title, Button, Text } from "../../atoms"; 
 import styled from 'styled-components';
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -54,7 +54,7 @@ const GroupCard = () => {
 
   const handlePageChange = () => {
     const selectedCategoryIds = selectedCategories.join(',');
-    navigate(`/rollRover?categories=${selectedCategoryIds}/${token}`);
+    navigate(`/rollRover/${selectedCategoryIds}/${token}`);
   };
 
   return (
@@ -64,7 +64,7 @@ const GroupCard = () => {
       <Text fontSize="20px" marginTop="20px" width="600px" marginBottom="50px">Choisissez vos genres de jeux préférés et lancez-vous !</Text>
       <StyledRow>
         {categories.map((categ, i) => (
-          <ClickableCard
+          <ClickableCardForCateg
           onClick={() => handleCardClick(categ.id)}
           title={categ.name}
           description={categ.description}/>

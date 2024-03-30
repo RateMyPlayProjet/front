@@ -18,5 +18,6 @@ import Username from "./Username/Username";
 import TitleCard from "./TitleCard/TitleCard";
 import Gamers from "./Gamers/Gamers";
 import Plateformes from "./Plateformes/Plateformes";
-import ClickableCard from "./ClickableCard/ClickableCard";
-export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image, Note, Link, InputPassword, Text, Username, TitleCard, Gamers, Plateformes, ClickableCard};
+import ClickableCardForCateg from "./ClickableCardForCateg/ClickableCardForCateg";
+import ClickableCardForGame from "./ClickableCardForGame/ClickableCardForGame";
+export {Card, Paragraph, Divider, Button, InputText, Clock, Logo, Profil, Title, Section, Genre, Image, Note, Link, InputPassword, Text, Username, TitleCard, Gamers, Plateformes, ClickableCardForCateg, ClickableCardForGame};

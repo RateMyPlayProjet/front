@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GroupCard, Menu, AlaUne, GroupCardCateg} from "../../components/organisms";
+import { GroupCardGame, Menu} from "../../components/organisms";
 
 /* const invert = ({ primary, secondary }) => ({
   primary: secondary,
@@ -82,7 +82,7 @@ const alaUne = [
   },
 ];
 
-function RollRoverPart1() {
+function RollRoverPart2() {
   const [page, setPage] = useState("notes");
 
   const renderPage = () => {
@@ -106,10 +106,10 @@ function RollRoverPart1() {
   return (
     <>
       <Menu data={menuData} handler={handler}></Menu>
-      <GroupCardCateg/>
+      <GroupCardGame/>
       {renderPage()}
     </>
   );
 }
 
-export default RollRoverPart1;
+export default RollRoverPart2;

@@ -7,4 +7,5 @@ import InfoGame from "./InfoGame/InfoGame";
 import Comments from "./Comments/Comments";
 import PlusInfoGame from "./PlusInfoGame/PlusInfoGame";
 import GroupCardCateg from './GroupCardCateg/GroupCardCateg';
-export { Menu , GroupCard, AlaUne, Authentification, Register, PlusInfoGame, InfoGame, Comments, GroupCardCateg};
+import GroupCardGame from "./GroupCardGame/GroupCardGame";
+export { Menu , GroupCard, AlaUne, Authentification, Register, PlusInfoGame, InfoGame, Comments, GroupCardCateg, GroupCardGame};
