@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Title from '../Title/Title';
+import Button from '../Button/Button';
 import { Wheel } from 'react-custom-roulette';
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import styled from 'styled-components';
 
-const data = [
-  { option: '0' },
-  { option: '1' },
-];
+const StyledDiv = styled.div`
+  display:flex;
+  justify-content: space-around;
+  margin-top: 20px;
+`
 
 const Roue = () => {
-  const [games, setGames] = useState([]);
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const { token, selectedGamesIds } = useParams();
@@ -51,7 +52,7 @@ const Roue = () => {
   
   const handleSpinClick = () => {
     if (!mustSpin) {
-      const newPrizeNumber = Math.floor(Math.random() * data.length);
+      const newPrizeNumber = Math.floor(Math.random() * gameNames.length);
       setPrizeNumber(newPrizeNumber);
       setMustSpin(true);
     }
@@ -59,20 +60,35 @@ const Roue = () => {
 
   return (
     <>
+    <StyledDiv>
     {gameNames.length > 0 && (
       <Wheel
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
         data={gameNames.map((gameName) => ({
-          option: gameName,
+          option: gameName, style: {backgroundColor: "rgba(132,106,248)", textColor: "black", fontFamily:"'Exo 2'"}
         }))}
         onStopSpinning={() => {
           setMustSpin(false);
         }}
       />
     )}
-
-      <button onClick={handleSpinClick}>SPIN</button>
+    </StyledDiv>
+    <StyledDiv>
+      <Button 
+            backgroundColor="white"
+            width="203px"
+            height="53px"
+            borderRadius="20px"
+            colorText="#3D2DEF"
+            fontSize="16px"
+            border="#3D2DEF"
+            onClick={handleSpinClick}
+            text="Fais tourner !"
+          />
+    </StyledDiv>
+      
+    
     </>
   );
 };

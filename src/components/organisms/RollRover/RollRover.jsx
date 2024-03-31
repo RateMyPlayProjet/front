@@ -23,8 +23,8 @@ const RollRover = () => {
 
   return (
     <StyledDiv1>
-      {/* <Title margin="0">RollRover</Title>
-      <Title margin="0" color="#846AF8" fontFamily="'Coolvetica'" fontSize="36px">Laissez la roue décider pour vous !</Title> */}
+      <Title margin="0">RollRover</Title>
+      <Title margin="0" color="#846AF8" fontFamily="'Coolvetica'" fontSize="36px">Laissez la roue décider pour vous !</Title>
       <StyledDiv>
         <Roue></Roue>
       </StyledDiv>

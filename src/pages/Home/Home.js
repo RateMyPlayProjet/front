@@ -114,13 +114,12 @@ function Home() {
   };
   return (
     <>
-    <RollRover></RollRover>
-      {/* <Menu data={menuData} handler={handler}></Menu>
+      <Menu data={menuData} handler={handler}></Menu>
       <AlaUne data={alaUne}/>
       <GroupCard key="1" data={news} categ="Nouveautés"></GroupCard>
       <GroupCard key="2" data={recommandations} categ="Jeux du moment"></GroupCard>
       <GroupCard key="3" data={news} categ="Ma liste"></GroupCard>
-      {renderPage()} */}
+      {renderPage()}
     </>
   );
 }
