@@ -34,15 +34,25 @@ const Auth = ({ handler, data, ...props }) => {
   const handleLogin = () => {
     axios.post('http://localhost:8000/api/login_check', { username, password })
       .then(response => {
-        const token = response.data.token; // Assurez-vous d'adapter cette partie selon la structure de votre réponse
-        // Stockez le token localement (par exemple, dans le stockage local ou dans l'état global)
-        // Redirigez l'utilisateur vers la page '/home'
-        navigate(`/home/${token}`);
+        const token = response.data.token;
+        axios.get(`http://localhost:8000/api/user/${username}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(userResponse => {
+          const userId = userResponse.data.id;
+          navigate(`/home/${userId}/${token}`);
+        })
+        .catch(error => {
+          console.error("Erreur lors de la récupération de l'ID de l'utilisateur:", error);
+        });
       })
       .catch(error => {
         console.error("Erreur de connexion:", error);
       });
   };
+  
 
   return (
     <StyledDiv>
