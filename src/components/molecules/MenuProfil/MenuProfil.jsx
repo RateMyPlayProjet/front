@@ -5,9 +5,11 @@ import {FaHeart, FaSearch} from "react-icons/fa";
 import src from '../../../img/pp.jpg';
 
 const StyledDiv = styled.div`
-  width: 7%;
+  width: 26%;
   margin-top: auto;
   margin-bottom: auto;
+  display: flex;
+  justify-content: end;
 `;
 
 const MenuProfil = ({ handler, data, icon = <></>, iconSize="20px", ...props }) => {

@@ -4,14 +4,11 @@ import styled from 'styled-components';
 import {FaSearch} from "react-icons/fa";
 
 const StyledDiv = styled.div`
-  padding-top: 5px;
-  align-items: center;
-  width: 33%;
-  margin: auto;
+  display:flex;
+  justify-content: space-between;
 `;
 
 const MenuButton = ({ handler, data, icon = <></>, ...props }) => {
-  const [colorButton, setColorButton] = useState(false);
   const handlePageChange = () => {
     handler(data);
   };
@@ -19,7 +16,8 @@ const MenuButton = ({ handler, data, icon = <></>, ...props }) => {
     <StyledDiv>
       <Button
         onClick={handlePageChange}
-        color={colorButton}
+        colorText="white"
+        fontSize="18px"
         text={props.children}
       ></Button>
     </StyledDiv>
