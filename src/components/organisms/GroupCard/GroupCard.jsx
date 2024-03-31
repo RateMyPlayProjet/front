@@ -48,11 +48,11 @@ const StyledIcon = styled.div`
 const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",title="", categ="", category, ...props }) => {
   const [games, setGames] = useState([]);
   const [imageUrls, setImageUrls] = useState({});
-  const { token } = useParams();
+  const { token, userId } = useParams();
   const navigate = useNavigate();
 
   const handlePageChange = (id) => {
-    navigate(`/game/${id}/${token}`);
+    navigate(`/game/${userId}/${id}/${token}`);
   };
 
   useEffect(() => {

@@ -14,7 +14,7 @@ const Router = () => (
       <Route path="/" element={<Login />} />
       <Route path="/home/:userId/:token" element={<Home />} />
       <Route path="/register" element={<Inscription />} />
-      <Route path="/game/:id/:token" element={<Details />} />
+      <Route path="/game/:userId/:id/:token" element={<Details />} />
       <Route path="/rollRover/:token" element={<RollRoverPart1 />} />
       <Route path="/rollRover/categories/:selectedCategoryIds/:token" element={<RollRoverPart2 />} />
       <Route path="/rollRover/games/:selectedGamesIds/:token" element={<RollRoverPart3 />} />
