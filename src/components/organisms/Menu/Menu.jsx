@@ -42,7 +42,7 @@ const Menu = () => {
     {
       text: "RollRover",
       data: "rollRover",
-      path: `/rollRover/${token}`,
+      path: `/rollRover`,
     },
     {
       text: "Ma liste",

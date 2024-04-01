@@ -63,7 +63,7 @@ const GroupCardGame = () => {
   const [categories, setCategories] = useState([]);
   const [selectedGames, setSelectedGames] = useState([]);
   const [imageUrls, setImageUrls] = useState({});
-  const { token, selectedCategoryIds } = useParams();
+  const { selectedCategoryIds } = useParams();
   const navigate = useNavigate();
 
   const categoryIds = selectedCategoryIds.split(",");
@@ -74,7 +74,7 @@ const GroupCardGame = () => {
         const categoryPromises = categoryIds.map((categoryId) => {
           return axios.get(`http://localhost:8000/api/category/${categoryId}`, {
             headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
           });
         });
@@ -97,7 +97,7 @@ const GroupCardGame = () => {
 
   const handlePageChange = () => {
     const selectedGamesIds = selectedGames.join(',');
-    navigate(`/rollRover/games/${selectedGamesIds}/${token}`);
+    navigate(`/rollRover/games/${selectedGamesIds}`);
   };
 
   return (

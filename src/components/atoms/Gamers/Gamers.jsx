@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
 
 const Gamers = ({ icon = (<></>), ...props }) => {
   const [game, setGame] = useState(null);
-  const { token, id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     let config = {
@@ -18,7 +18,7 @@ const Gamers = ({ icon = (<></>), ...props }) => {
       maxBodyLength: Infinity,
       url: `http://localhost:8000/api/game/${id}`,
       headers: { 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     };
     
@@ -29,7 +29,7 @@ const Gamers = ({ icon = (<></>), ...props }) => {
     .catch((error) => {
       console.log(error);
     });
-  }, [token, id]);
+  }, [id]);
   return (
     <StyledDiv {...props}>
       {icon}

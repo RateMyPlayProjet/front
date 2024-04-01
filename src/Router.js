@@ -12,12 +12,12 @@ const Router = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/home/:userId/:token" element={<Home />} />
+      <Route path="/home/:userId" element={<Home />} />
       <Route path="/register" element={<Inscription />} />
-      <Route path="/game/:userId/:id/:token" element={<Details />} />
-      <Route path="/rollRover/:token" element={<RollRoverPart1 />} />
-      <Route path="/rollRover/categories/:selectedCategoryIds/:token" element={<RollRoverPart2 />} />
-      <Route path="/rollRover/games/:selectedGamesIds/:token" element={<RollRoverPart3 />} />
+      <Route path="/game/:userId/:id" element={<Details />} />
+      <Route path="/rollRover" element={<RollRoverPart1 />} />
+      <Route path="/rollRover/categories/:selectedCategoryIds" element={<RollRoverPart2 />} />
+      <Route path="/rollRover/games/:selectedGamesIds" element={<RollRoverPart3 />} />
 
     </Routes>
   </BrowserRouter>

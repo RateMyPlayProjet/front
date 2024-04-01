@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Utilisez useNavigate au lieu de useHistory
 import { InputText, Title, Button } from "../../atoms"; 
+import { accountService } from "../../../_services/account.service";
 import styled from 'styled-components';
 import axios from "axios";
 
@@ -34,15 +35,16 @@ const Auth = ({ handler, data, ...props }) => {
   const handleLogin = () => {
     axios.post('http://localhost:8000/api/login_check', { username, password })
       .then(response => {
-        const token = response.data.token;
+        accountService.saveToken(response.data.token)
+        accountService.saveResfreshToken(response.data.refresh_token)
         axios.get(`http://localhost:8000/api/user/${username}`, {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         })
         .then(userResponse => {
           const userId = userResponse.data.id;
-          navigate(`/home/${userId}/${token}`);
+          navigate(`/home/${userId}`);
         })
         .catch(error => {
           console.error("Erreur lors de la récupération de l'ID de l'utilisateur:", error);

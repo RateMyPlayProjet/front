@@ -39,14 +39,14 @@ const Comments = ({iconSize="30px"}) => {
   const [comment, setComment] = useState("");
   const [imageUrls, setImageUrls] = useState({});
   const [note, setNote] = useState(null);
-  const { token, id, userId } = useParams();
+  const { id, userId } = useParams();
   let i = 0;
 
   const fetchData = async () => {
     try {
       let userData = {};
       const response = await axios.get("http://localhost:8000/api/notice", {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const noticesData = response.data;
       const filteredNotices = noticesData.filter(notice => notice.game && notice.game.id === parseInt(id));
@@ -59,7 +59,7 @@ const Comments = ({iconSize="30px"}) => {
           maxBodyLength: Infinity,
           url: `http://localhost:8000/api/images/user/${userId}`,
           headers: { 
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
           responseType: 'arraybuffer'
         };
@@ -81,7 +81,7 @@ const Comments = ({iconSize="30px"}) => {
 
   useEffect(() => {
     fetchData();
-  }, [token]);  
+  }, []);  
 
   const noteStar = (note) => {
     switch (note) {
@@ -146,7 +146,7 @@ const Comments = ({iconSize="30px"}) => {
         url: `http://localhost:8000/api/user/${userId}/notices/new`,
         headers: { 
           'Content-Type': 'application/json', 
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         data: data
       };

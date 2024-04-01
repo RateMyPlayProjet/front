@@ -3,6 +3,8 @@ import "./Home.css";
 import { ThemeProvider, styled } from "styled-components";
 import { NightModeSwitch } from "../../components/molecules";
 import { GroupCard, Menu, AlaUne, RollRover} from "../../components/organisms";
+import { accountService } from "../../_services/account.service";
+import { Navigate } from "react-router-dom";
 
 const night = {
   primary: "white",
@@ -29,6 +31,9 @@ const alaUne = [
 function Home() {
   const isNightMode = true; // Définissez votre état du mode nuit ici
   const invert = () => (isNightMode ? night : day);
+  if(!accountService.isLogged()){
+    return <Navigate to="/"/>
+  }
   return (
     <>
     <ThemeProvider theme={invert(isNightMode)}>

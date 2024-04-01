@@ -5,6 +5,7 @@ import GroupNote from "../GroupNote/GroupNote";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import { accountService } from "../../../_services/account.service";
 
 const StyledDiv = styled.div`
   position: relative;
@@ -47,7 +48,7 @@ const StyleStar = styled.div`
 const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) => {
   const [game, setGame] = useState(null);
   const [note, setNote] = useState(null);
-  const { token, id } = useParams();
+  const { id } = useParams();
   const [imageUrls, setImageUrls] = useState({});
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
       maxBodyLength: Infinity,
       url: `http://localhost:8000/api/game/${id}`,
       headers: { 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     };
 
@@ -67,7 +68,7 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
       .catch((error) => {
         console.log(error);
       });
-  }, [token, id]);
+  }, [ id]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,7 +79,7 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
           maxBodyLength: Infinity,
           url: `http://localhost:8000/api/images/game/${id}`,
           headers: { 
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
           responseType: 'arraybuffer'
         };
@@ -96,7 +97,7 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
     };
     fetchData();
     setNote(game?.notices[0]?.note)
-  }, [token, id, game]);
+  }, [id, game]);
 
   const noteStar = () => {
     switch (note) {

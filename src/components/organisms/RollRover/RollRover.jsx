@@ -18,7 +18,6 @@ const StyledDiv = styled.div`
 `;
 
 const RollRover = () => {
-  const { token, selectedCategoryIds } = useParams();
   const navigate = useNavigate();
 
   return (

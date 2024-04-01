@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
 const Roue = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
-  const { token, selectedGamesIds } = useParams();
+  const { selectedGamesIds } = useParams();
   const [gameNames, setGameNames] = useState([]);
   const gameIds = selectedGamesIds ? selectedGamesIds.split(",") : [];
 
@@ -27,7 +27,7 @@ const Roue = () => {
           method: 'get',
           url: `http://localhost:8000/api/game/${gameId}`,
           headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         };
         requests.push(axios.request(config));
@@ -46,7 +46,7 @@ const Roue = () => {
     if (gameIds.length > 0) {
       fetchDataForGameIds();
     }
-  }, [token]);
+  }, []);
   
     
   

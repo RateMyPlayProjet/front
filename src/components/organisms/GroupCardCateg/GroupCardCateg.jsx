@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
+
 const StyledDiv1 = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,7 +36,7 @@ const GroupCard = () => {
       maxBodyLength: Infinity,
       url: 'http://localhost:8000/api/category',
       headers: { 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     };
     
@@ -54,7 +55,7 @@ const GroupCard = () => {
 
   const handlePageChange = () => {
     const selectedCategoryIds = selectedCategories.join(',');
-    navigate(`/rollRover/categories/${selectedCategoryIds}/${token}`);
+    navigate(`/rollRover/categories/${selectedCategoryIds}`);
   };
 
   return (

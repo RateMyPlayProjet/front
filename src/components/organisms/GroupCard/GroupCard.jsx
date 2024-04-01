@@ -5,6 +5,7 @@ import style from "./GroupCard.module.css";
 import { FaStar, FaCheck, FaPlus, FaHeart } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 import axios from "axios";
+import { accountService } from "../../../_services/account.service";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StyledDiv1 = styled.div`
@@ -48,12 +49,41 @@ const StyledIcon = styled.div`
 const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "", categ = "", category, ...props }) => {
   const [games, setGames] = useState([]);
   const [imageUrls, setImageUrls] = useState({});
-  const { token, userId } = useParams();
+  const { userId } = useParams();
   const [iconStates, setIconStates] = useState({}); // État pour chaque bouton
   const navigate = useNavigate();
 
   const handlePageChange = (id) => {
-    navigate(`/game/${userId}/${id}/${token}`);
+    navigate(`/game/${userId}/${id}`);
+  };
+  const fetchGames = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/game', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setGames(response.data);
+      // Initialiser les états des icônes pour chaque jeu
+      const initialIconStates = {};
+      response.data.forEach(game => {
+        initialIconStates[game.id] = false; // false pour le bouton initial
+      });
+      setIconStates(initialIconStates);
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        // Token expiré, rafraîchissez le token
+        try {
+          await accountService.refreshToken();
+          // Rejouez la requête
+          fetchGames();
+        } catch (refreshError) {
+          console.error('Erreur lors du rafraîchissement du token:', refreshError);
+          // Gérer l'erreur de rafraîchissement
+        }
+      }
+    }
   };
 
   useEffect(() => {
@@ -62,7 +92,7 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
       maxBodyLength: Infinity,
       url: 'http://localhost:8000/api/game',
       headers: { 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     };
     
@@ -89,7 +119,7 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
             maxBodyLength: Infinity,
             url: `http://localhost:8000/api/images/game/${game.id}`,
             headers: { 
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             responseType: 'arraybuffer'
           };
@@ -105,10 +135,20 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
         setImageUrls(imageData);
       } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
+        if (error.response && error.response.status === 401) {
+          // Token expiré, rafraîchissez le token
+          try {
+            await accountService.refreshToken();
+            // Rejouez la requête
+            fetchGames();
+          } catch (refreshError) {
+            console.error('Erreur lors du rafraîchissement du token:', refreshError);
+          }
+        }
       }
     };
     fetchData();
-  }, [token]);
+  });
 
   const handleButtonClick = (id) => {
     // Mettre à jour le jeu avec l'ID fourni
@@ -119,7 +159,7 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
       maxBodyLength: Infinity,
       url: `http://localhost:8000/api/game/${id}`,
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     };
     
