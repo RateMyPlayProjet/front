@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Button, Card, Genre, Title, Image } from "../../atoms"; 
 import styled from 'styled-components';
 import style from "./GroupCard.module.css";
-import { FaPlus, FaStar, FaHeart } from "react-icons/fa";
-import { GroupNote } from "../../molecules";
+import { FaPlus, FaStar, FaHeart, FaCheck } from "react-icons/fa";
+import { CiHeart } from "react-icons/ci";
+import { GroupNote, HeartButton } from "../../molecules";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -49,6 +50,8 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
   const [games, setGames] = useState([]);
   const [imageUrls, setImageUrls] = useState({});
   const { token, userId } = useParams();
+  const [checkIcon, setCheckIcon] = useState(<FaPlus />);
+  const [heartIcon, setHeartIcon] = useState(<CiHeart />);
   const navigate = useNavigate();
 
   const handlePageChange = (id) => {
@@ -105,6 +108,14 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
     };
     fetchData();
   }, [games, token]);
+
+  const handleCheckClick = () => {
+      setCheckIcon(<FaCheck />);
+  };
+
+  const handleHeartClick = () => {
+    setHeartIcon(<FaHeart />);
+};
 
   return (
     <StyledDiv1>
@@ -168,8 +179,8 @@ const GroupCard = ({ handler, data, card, icon = <></>, titleGame="", text="",ti
                 <StyledTitle>
                   <Title fontFamily="'Exo2" fontSize="16px">{game.name}</Title>
                   <StyledIcon>
-                    <FaPlus></FaPlus>
-                    <FaHeart></FaHeart>
+                    <Button icon={checkIcon} onClick={handleCheckClick} />
+                    <Button icon={heartIcon} onClick={handleHeartClick} />
                   </StyledIcon>
                 </StyledTitle>
                   <Genre>

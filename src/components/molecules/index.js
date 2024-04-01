@@ -5,5 +5,6 @@ import Auth from "./Auth/Auth";
 import Form from "./Form/Form";
 import GameInfo from "./GameInfo/GameInfo";
 import ProfilPublication from "./ProfilPublication/ProfilPublication";
+import HeartButton from "./HeartButton/HeartButton";
 
-export { MenuButton, MenuProfil, GroupNote, Auth, Form, GameInfo, ProfilPublication };
+export { MenuButton, MenuProfil, GroupNote, Auth, Form, GameInfo, ProfilPublication, HeartButton };
