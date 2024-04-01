@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Logo, Profil, Button } from "../../atoms";
 import { MenuButton } from "../../molecules";
-import { Link, useParams } from "react-router-dom"; // Importer Link et useParams depuis React Router
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-
 import styled from 'styled-components';
 import MenuProfil from "../../molecules/MenuProfil/MenuProfil";
 
 const StyledDiv = styled.div`
-  background-color: black;
+  background-color: ${props => props.isNightMode ? "black" : "white"};
   height: 70px;
-  color:white;
-  display:flex;  
+  color: ${props => props.isNightMode ? "white" : "black"};
+  display: flex;  
+  align-items: center; /* Pour centrer le texte verticalement */
 `;
+
 
 const StyledLink = styled.div`
   margin-top: auto;
@@ -22,28 +23,34 @@ const StyledLink = styled.div`
   width: 50%;
 `;
 
-const Menu = (/* { handler, data } */) => {
+const Menu = () => {
   const logoText = "Rate My Play";
   const [imageUrls, setImageUrls] = useState({});
-  const { token, userId } = useParams(); // Appel de useParams à l'intérieur de la fonction Menu
+  const { token, userId } = useParams();
+  const [isNightMode, setIsNightMode] = useState(true); // Ajout de l'état du mode nuit
+
+  const handleNightMode = () => {
+    setIsNightMode(prevMode => !prevMode); // Inverser l'état du mode nuit
+  };
 
   const menuData = [
     {
       text: "Notes",
       data: "notes",
-      path: "/notes", // Chemin vers la page "Notes"
+      path: "/notes",
     },
     {
       text: "RollRover",
       data: "rollRover",
-      path: `/rollRover/${token}`, // Chemin vers la page "RollRover"
+      path: `/rollRover/${token}`,
     },
     {
       text: "Ma liste",
       data: "liste",
-      path: "/liste", // Chemin vers la page "Ma liste"
+      path: "/liste",
     },
   ];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -74,7 +81,7 @@ const Menu = (/* { handler, data } */) => {
   }, [userId, token]);
 
   return (
-    <StyledDiv>
+    <StyledDiv isNightMode={isNightMode}>
       <Logo text={logoText}/>
       <StyledLink>
       {menuData.map((menuItem, i) => {
@@ -86,9 +93,9 @@ const Menu = (/* { handler, data } */) => {
         );
       })}
       </StyledLink>
-      <MenuProfil></MenuProfil>
-      <Link to="/profile"> {/* Rediriger vers la page de profil */}
-        <Button /* onClick={handler} */ icon={<Profil src={imageUrls[userId]}/>}></Button>
+      <MenuProfil handler={handleNightMode} />
+      <Link to="/profile">
+        <Button icon={<Profil src={imageUrls[userId]}/>}></Button>
       </Link>
     </StyledDiv>
   );

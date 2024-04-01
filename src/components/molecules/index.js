@@ -5,5 +5,6 @@ import Auth from "./Auth/Auth";
 import Form from "./Form/Form";
 import GameInfo from "./GameInfo/GameInfo";
 import ProfilPublication from "./ProfilPublication/ProfilPublication";
+import NightModeSwitch from "./NightModeSwitch/NightModeSwitch";
 
-export { MenuButton, MenuProfil, GroupNote, Auth, Form, GameInfo, ProfilPublication };
+export { MenuButton, MenuProfil, GroupNote, Auth, Form, GameInfo, ProfilPublication, NightModeSwitch };

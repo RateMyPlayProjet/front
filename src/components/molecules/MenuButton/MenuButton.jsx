@@ -12,7 +12,7 @@ const MenuButton = ({ handler, data, icon = <></>, ...props }) => {
   return (
     <StyledDiv>
       <Button
-        colorText="white"
+        colorText="#3FA9F9"
         fontSize="18px"
         text={props.children}
       ></Button>

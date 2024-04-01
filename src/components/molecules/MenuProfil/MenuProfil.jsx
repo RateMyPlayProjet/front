@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Button, Profil } from "../../atoms"; 
+import React from "react";
+import { Button } from "../../atoms"; 
 import styled from 'styled-components';
-import {FaHeart, FaSearch} from "react-icons/fa";
-import src from '../../../img/pp.jpg';
+import { FaHeart } from "react-icons/fa";
+import { MdModeNight } from "react-icons/md";
 
 const StyledDiv = styled.div`
   width: 26%;
@@ -12,16 +12,20 @@ const StyledDiv = styled.div`
   justify-content: end;
 `;
 
-const MenuProfil = ({ handler, data, icon = <></>, iconSize="20px", ...props }) => {
-  const [colorButton, setColorButton] = useState(false);
+const MenuProfil = ({ handler, data, icon = <></>, iconSize="20px", isNightMode, ...props }) => {
   const handlePageChange = () => {
     handler(data);
   };
+
+  const handleSunButtonClick = () => {
+    handler();
+  };
+
   return (
     <StyledDiv>
       <Button
-        onClick={handlePageChange}
-        icon={<FaSearch color="#3FA9F9" size={iconSize}/>}
+        onClick={handleSunButtonClick}
+        icon={<MdModeNight color={isNightMode ? 'white' : '#3FA9F9'} size={iconSize}/>}
       ></Button>
       <Button
         onClick={handlePageChange}
