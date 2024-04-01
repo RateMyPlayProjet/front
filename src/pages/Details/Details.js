@@ -23,11 +23,6 @@ const StyledDiv = styled.div`
 `;
 
 function Details() {
-  /* const [page, setPage] = useState("lemon");
-
-  const handler = (pageName) => {
-    setPage(pageName);
-  }; */
   return (
     <>
       <Menu data={menuData}></Menu>

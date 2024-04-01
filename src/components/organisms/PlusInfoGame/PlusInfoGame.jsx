@@ -11,17 +11,17 @@ const StyledDiv = styled.div`
 `;
 
 
-const PlusInfoGame = ({text="Hello",iconSize="30px"}) => {
+const PlusInfoGame = ({iconSize="30px"}) => {
     return (
       <div className={style.container}>
         <StyledDiv>
           <Gamers 
           icon={<IoIosPeople color="#3FA9F9" size={iconSize}/>}
-          text={text}>
+          >
           </Gamers>
           <Plateformes 
           icon={<IoGameController color="#3FA9F9" size={iconSize}/>}
-          text={text}>
+          >
           </Plateformes>
         </StyledDiv>
         

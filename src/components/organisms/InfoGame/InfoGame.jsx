@@ -14,14 +14,6 @@ const InfoGame = ({ data }) => {
         <StyledDiv> 
             <GameInfo />
         </StyledDiv> 
-          {/* {data && data.map((x, i) => {
-              let {note} = x;
-              return (
-                  <StyledDiv key={i}> 
-                      <GameInfo note={note} />
-                  </StyledDiv> 
-              );
-          })} */}
       </StyledDiv1>
     );
   };
