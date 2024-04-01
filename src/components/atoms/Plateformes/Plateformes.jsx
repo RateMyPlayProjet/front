@@ -26,7 +26,6 @@ const Plateformes = ({ icon =(<></>), ...props}) => {
     axios.request(config)
     .then((response) => {
       setGame(response.data)
-      console.log(game.plateformes)
     })
     .catch((error) => {
       console.log(error);

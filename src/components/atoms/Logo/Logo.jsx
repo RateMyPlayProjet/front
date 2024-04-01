@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
   display: flex;
-  width: 33%;
   align-items: center;
   font-family: 'MADE Soulmaze', sans-serif;
 `;

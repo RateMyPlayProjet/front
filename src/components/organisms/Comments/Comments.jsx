@@ -156,7 +156,6 @@ const Comments = ({iconSize="30px"}) => {
       };
   
       const response = await axios.request(config);
-      console.log(response.data);
       // Rafraîchir les commentaires après l'ajout
       fetchData();
     } catch (error) {

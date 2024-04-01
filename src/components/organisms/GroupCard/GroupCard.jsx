@@ -138,8 +138,6 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
 
   const handleButtonClick = (id) => {
     // Mettre à jour le jeu avec l'ID fourni
-    console.log(`Bouton cliqué pour le jeu avec l'ID: ${id}`);
-
     let config = {
       method: 'put',
       maxBodyLength: Infinity,

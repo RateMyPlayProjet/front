@@ -38,7 +38,6 @@ const Roue = () => {
         const responses = await axios.all(requests);
         const gameNames = responses.map(response => response.data.name);
         setGameNames(gameNames);
-        console.log(gameNames)
       } catch (error) {
         console.error("Error fetching games:", error);
         if (error.response && error.response.status === 401) {

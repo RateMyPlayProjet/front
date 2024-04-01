@@ -30,6 +30,7 @@ const Menu = () => {
   const [isNightMode, setIsNightMode] = useState(true); // Ajout de l'état du mode nuit
   const navigate = useNavigate();
 
+  const home = `/home/${userId}`
   const handleNightMode = () => {
     setIsNightMode(prevMode => !prevMode); // Inverser l'état du mode nuit
   };
@@ -70,8 +71,6 @@ const Menu = () => {
           const blob = new Blob([response.data], { type: response.headers['content-type'] });
           const imageUrl = URL.createObjectURL(blob);
           imageData[userId] = imageUrl;
-        }else{
-          console.log("Ca ne fonctionne pas")
         }
         setImageUrls(imageData);
       } catch (error) {
@@ -86,7 +85,9 @@ const Menu = () => {
 
   return (
     <StyledDiv isNightMode={isNightMode}>
-      <Logo text={logoText}/>
+      <Link to={home}>
+        <Logo text={logoText} />
+      </Link>
       <StyledLink>
       {menuData.map((menuItem, i) => {
         const { text, path } = menuItem;

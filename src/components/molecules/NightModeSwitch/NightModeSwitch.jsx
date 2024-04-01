@@ -7,7 +7,6 @@ const NightModeSwitch = ({ handler, isNightMode, ...props }) => {
     handler();
     setNightMode(!nightMode);
   };
-  console.log("NightModeSwitch.render");
   return (
     <Button
       onClick={handleNightMode}
