@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Logo, Profil, Button } from "../../atoms";
 import { MenuButton } from "../../molecules";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from 'styled-components';
 import MenuProfil from "../../molecules/MenuProfil/MenuProfil";
@@ -26,8 +26,9 @@ const StyledLink = styled.div`
 const Menu = () => {
   const logoText = "Rate My Play";
   const [imageUrls, setImageUrls] = useState({});
-  const { token, userId } = useParams();
+  const { userId } = useParams();
   const [isNightMode, setIsNightMode] = useState(true); // Ajout de l'état du mode nuit
+  const navigate = useNavigate();
 
   const handleNightMode = () => {
     setIsNightMode(prevMode => !prevMode); // Inverser l'état du mode nuit
@@ -60,7 +61,7 @@ const Menu = () => {
           maxBodyLength: Infinity,
           url: `http://localhost:8000/api/images/user/${userId}`,
           headers: { 
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
           responseType: 'arraybuffer'
         };
@@ -75,10 +76,13 @@ const Menu = () => {
         setImageUrls(imageData);
       } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
+        if (error.response && error.response.status === 401) {
+          navigate("/");
+        }
       }
     };
     fetchData();
-  }, [userId, token]);
+  }, [userId]);
 
   return (
     <StyledDiv isNightMode={isNightMode}>

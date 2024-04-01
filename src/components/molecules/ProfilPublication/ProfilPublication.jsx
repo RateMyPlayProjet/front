@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Profil, Username, Text } from "../../atoms"; 
-import axios from "axios";
 import styled from 'styled-components';
-import { useParams } from "react-router-dom";
 import moment from 'moment';
 
 const StyledDiv = styled.div`

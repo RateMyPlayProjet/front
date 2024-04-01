@@ -46,6 +46,9 @@ const GroupCard = () => {
     })
     .catch((error) => {
       console.log(error);
+      if (error.response && error.response.status === 401) {
+        navigate("/");
+      }
     });
   }, [token]);
 

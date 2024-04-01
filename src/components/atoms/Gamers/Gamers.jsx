@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const StyledDiv = styled.div`
   display: flex;
@@ -11,6 +11,7 @@ const StyledDiv = styled.div`
 const Gamers = ({ icon = (<></>), ...props }) => {
   const [game, setGame] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let config = {
@@ -28,6 +29,9 @@ const Gamers = ({ icon = (<></>), ...props }) => {
     })
     .catch((error) => {
       console.log(error);
+      if (error.response && error.response.status === 401) {
+        navigate("/");
+      }
     });
   }, [id]);
   return (

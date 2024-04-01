@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '../Button/Button';
 import { Wheel } from 'react-custom-roulette';
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -17,6 +17,7 @@ const Roue = () => {
   const { selectedGamesIds } = useParams();
   const [gameNames, setGameNames] = useState([]);
   const gameIds = selectedGamesIds ? selectedGamesIds.split(",") : [];
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDataForGameIds = async () => {
@@ -40,6 +41,9 @@ const Roue = () => {
         console.log(gameNames)
       } catch (error) {
         console.error("Error fetching games:", error);
+        if (error.response && error.response.status === 401) {
+          navigate("/");
+        }
       }
     };
   

@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import GroupNote from "../GroupNote/GroupNote";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
-import { useParams } from "react-router-dom";
-import { accountService } from "../../../_services/account.service";
+import { useParams, useNavigate } from "react-router-dom";
 
 const StyledDiv = styled.div`
   position: relative;
@@ -50,6 +49,7 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
   const [note, setNote] = useState(null);
   const { id } = useParams();
   const [imageUrls, setImageUrls] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     let config = {
@@ -67,6 +67,9 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
       })
       .catch((error) => {
         console.log(error);
+        if (error.response && error.response.status === 401) {
+          navigate("/");
+        }
       });
   }, [ id]);
 
@@ -93,6 +96,9 @@ const GameInfo = ({ handler, data, icon = <></>, iconSize="20px", ...props }) =>
         
       } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
+        if (error.response && error.response.status === 401) {
+          navigate("/");
+        }
       }
     };
     fetchData();

@@ -48,10 +48,16 @@ const Auth = ({ handler, data, ...props }) => {
         })
         .catch(error => {
           console.error("Erreur lors de la récupération de l'ID de l'utilisateur:", error);
+          if (error.response && error.response.status === 401) {
+            navigate("/");
+          }
         });
       })
       .catch(error => {
         console.error("Erreur de connexion:", error);
+        if (error.response && error.response.status === 401) {
+          navigate("/");
+        }
       });
   };
   

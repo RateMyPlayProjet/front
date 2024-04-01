@@ -73,15 +73,7 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 401) {
-        // Token expiré, rafraîchissez le token
-        try {
-          await accountService.refreshToken();
-          // Rejouez la requête
-          fetchGames();
-        } catch (refreshError) {
-          console.error('Erreur lors du rafraîchissement du token:', refreshError);
-          // Gérer l'erreur de rafraîchissement
-        }
+        navigate("/");
       }
     }
   };
@@ -108,6 +100,9 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
     })
     .catch((error) => {
       console.log(error);
+      if (error.response && error.response.status === 401) {
+        navigate("/");
+      }
     });
     
     const fetchData = async () => {
@@ -128,22 +123,13 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
             const blob = new Blob([response.data], { type: response.headers['content-type'] });
             const imageUrl = URL.createObjectURL(blob);
             imageData[game.id] = imageUrl;
-          } else {
-            console.log("Ca ne fonctionne pas")
           }
         }
         setImageUrls(imageData);
       } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
         if (error.response && error.response.status === 401) {
-          // Token expiré, rafraîchissez le token
-          try {
-            await accountService.refreshToken();
-            // Rejouez la requête
-            fetchGames();
-          } catch (refreshError) {
-            console.error('Erreur lors du rafraîchissement du token:', refreshError);
-          }
+          navigate("/");
         }
       }
     };
@@ -169,6 +155,9 @@ const GroupCard = ({ handler, data, card, titleGame = "", text = "", title = "",
     })
     .catch((error) => {
       console.log(error);
+      if (error.response && error.response.status === 401) {
+        navigate("/");
+      }
     });
     
     // Mettre à jour l'état de l'icône uniquement pour le jeu cliqué

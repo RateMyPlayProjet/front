@@ -84,6 +84,9 @@ const GroupCardGame = () => {
         setCategories(categoryData);
       } catch (error) {
         console.log("Error fetching categories:", error);
+        if (error.response && error.response.status === 401) {
+          navigate("/");
+        }
       }
     };
   

@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Roue, Title, Button } from "../../atoms"; 
+import React from "react";
+import { Roue, Title } from "../../atoms"; 
 import styled from 'styled-components';
-import { GroupNote } from "../../molecules";
-import axios from "axios";
-import { FaStar } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StyledDiv1 = styled.div`

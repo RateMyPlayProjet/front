@@ -6,7 +6,7 @@ import style from './Comments.module.css';
 import styled from 'styled-components';
 import { FaStar } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const StyledDiv = styled.div`
   padding-left:15px;
@@ -40,6 +40,7 @@ const Comments = ({iconSize="30px"}) => {
   const [imageUrls, setImageUrls] = useState({});
   const [note, setNote] = useState(null);
   const { id, userId } = useParams();
+  const navigate = useNavigate();
   let i = 0;
 
   const fetchData = async () => {
@@ -76,6 +77,9 @@ const Comments = ({iconSize="30px"}) => {
       setNote(notices[i].note)
     } catch (error) {
       console.error("Une erreur s'est produite lors de la récupération des données d'image :", error);
+      if (error.response && error.response.status === 401) {
+        navigate("/");
+      }
     }
   };
 
